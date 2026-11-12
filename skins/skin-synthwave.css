@@ -1,0 +1,984 @@
+/* =========================================================
+   CALCULATOR SYNTHWAVE
+   ========================================================= */
+
+:root {
+
+    --synth-background: #080312;
+    --synth-background-2: #12051f;
+
+    --synth-panel: #130721;
+    --synth-panel-2: #1b0a2d;
+
+    --synth-display: #090512;
+
+    --synth-pink: #ff00a0;
+    --synth-pink-hot: #ff2a6d;
+
+    --synth-purple: #8b2cff;
+    --synth-purple-light: #b967ff;
+
+    --synth-cyan: #05d9e8;
+    --synth-cyan-light: #63f7ff;
+
+    --synth-orange: #ff9e42;
+
+    --synth-text: #f5eaff;
+    --synth-text-muted: #9f88b8;
+
+    --synth-border: rgba(255, 0, 160, 0.45);
+
+    --synth-radius: 10px;
+
+    --glow-pink:
+        0 0 5px rgba(255, 0, 160, .75),
+        0 0 15px rgba(255, 0, 160, .35);
+
+    --glow-cyan:
+        0 0 5px rgba(5, 217, 232, .75),
+        0 0 15px rgba(5, 217, 232, .35);
+
+    --glow-purple:
+        0 0 5px rgba(139, 44, 255, .75),
+        0 0 15px rgba(139, 44, 255, .35);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    padding: 12px;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(139, 44, 255, .22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 0, 160, .12),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #080312 0%,
+            #10051c 50%,
+            #080312 100%
+        );
+
+    color: var(--synth-text);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+}
+
+
+/* =========================================================
+   SYNTHWAVE GRID BACKGROUND
+   ========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    left: -20%;
+    right: -20%;
+    bottom: -18%;
+
+    height: 60%;
+
+    background:
+        linear-gradient(
+            rgba(5, 217, 232, .16) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 0, 160, .13) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        42px 28px,
+        42px 28px;
+
+    transform:
+        perspective(280px)
+        rotateX(62deg);
+
+    transform-origin: center bottom;
+
+    opacity: .55;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 0 5px rgba(5, 217, 232, .25));
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   HORIZON GLOW
+   ========================================================= */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 17%;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--synth-purple),
+            var(--synth-pink),
+            var(--synth-purple),
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px rgba(255, 0, 160, .55),
+        0 0 25px rgba(139, 44, 255, .35);
+
+    opacity: .5;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    z-index: 1;
+
+    padding: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 10, 45, .97),
+            rgba(12, 4, 22, .98)
+        );
+
+    border:
+        1px solid rgba(255, 0, 160, .55);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 8px rgba(255, 0, 160, .35),
+        0 0 30px rgba(139, 44, 255, .22),
+        inset 0 0 30px rgba(139, 44, 255, .06);
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* =========================================================
+   CALCULATOR HEADER
+   ========================================================= */
+
+.calculator::before {
+
+    content: "SYNTHWAVE";
+
+    margin: 0 4px 1px;
+
+    color: #ff2e92;
+
+    font-family: "Monoton", monospace;
+
+    font-size: 14px;
+
+    font-weight: normal;
+
+    letter-spacing: 3px;
+
+    line-height: 20px;
+
+    text-align: left;
+
+    text-shadow:
+        0 0 2px #ff2e92,
+        0 0 5px #ff2e92,
+        0 0 10px #ff2e92,
+        0 0 18px #ff2e92,
+        0 0 30px rgba(255, 46, 146, .9),
+        0 0 45px rgba(255, 46, 146, .65);
+}
+
+
+.calculator::after {
+
+    content: "RETRO COMPUTING SYSTEM  //  1984";
+
+    margin: 0 4px 8px;
+
+    color: #21e1ff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    line-height: 12px;
+
+    text-align: left;
+
+    text-shadow:
+        0 0 3px #21e1ff,
+        0 0 7px #21e1ff,
+        0 0 14px rgba(33, 225, 255, .8);
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 95px;
+
+    padding: 10px 12px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, .025) 0,
+            rgba(255, 255, 255, .025) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+
+    border:
+        1px solid rgba(5, 217, 232, .7);
+
+    border-radius: var(--synth-radius);
+
+    box-shadow:
+        0 0 5px rgba(33, 225, 255, .25),
+        0 0 15px rgba(33, 225, 255, .12);
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 24px;
+
+    color: var(--synth-pink);
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 5px rgba(255, 0, 160, .7);
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+@font-face {
+    font-family: "Monoton";
+    src: url("../fonts/Monoton-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.value {
+
+    min-height: 34px;
+
+    color: var(--synth-cyan-light);
+
+    font-family:
+        "Monoton",
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 24px;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 5px rgba(5, 217, 232, .8),
+        0 0 15px rgba(5, 217, 232, .35);
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 20px;
+
+    margin-top: 3px;
+
+    color: var(--synth-purple-light);
+
+    font-size: 10px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+
+    opacity: .85;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 5px;
+
+    margin-bottom: 7px;
+}
+
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 27px;
+
+    border:
+        1px solid rgba(139, 44, 255, .5);
+
+    border-radius: 7px;
+
+    background:
+        rgba(27, 10, 45, .8);
+
+    color: var(--synth-purple-light);
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    box-shadow:
+        0 0 5px rgba(139, 44, 255, .15);
+}
+
+
+.mode button.active {
+
+    color: var(--synth-cyan-light);
+
+    border-color: var(--synth-cyan);
+
+    box-shadow: var(--glow-cyan);
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 5px;
+}
+
+
+/* =========================================================
+   ALL BUTTONS
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: var(--synth-text);
+
+    background:
+        linear-gradient(
+            145deg,
+            #211033,
+            #11071d
+        );
+
+    border:
+        1px solid rgba(159, 136, 184, .25);
+
+    transition:
+        transform .08s ease,
+        box-shadow .12s ease,
+        border-color .12s ease,
+        color .12s ease;
+
+    box-shadow:
+        inset 0 0 10px rgba(255, 255, 255, .015),
+        0 2px 4px rgba(0, 0, 0, .45);
+}
+
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.buttons button:hover {
+
+    transform: translateY(-1px);
+
+    color: #ffffff;
+
+    border-color: var(--synth-cyan);
+
+    box-shadow:
+        var(--glow-cyan),
+        inset 0 0 10px rgba(5, 217, 232, .08);
+}
+
+
+/* =========================================================
+   ACTIVE
+   ========================================================= */
+
+.buttons button:active {
+
+    transform:
+        translateY(1px)
+        scale(.97);
+
+    box-shadow:
+        inset 0 0 12px rgba(255, 255, 255, .08);
+}
+
+
+/* =========================================================
+   NUMBER BUTTONS
+   ========================================================= */
+
+.buttons button.number {
+
+    color: #eee5ff;
+
+    border-color:
+        rgba(139, 44, 255, .38);
+
+    box-shadow:
+        inset 0 0 10px rgba(139, 44, 255, .035);
+}
+
+
+.buttons button.number:hover {
+
+    color: var(--synth-cyan-light);
+
+    border-color: var(--synth-cyan);
+
+    box-shadow: var(--glow-cyan);
+}
+
+
+/* =========================================================
+   FUNCTION BUTTONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color: var(--synth-cyan-light);
+
+    border-color:
+        rgba(5, 217, 232, .5);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(5, 217, 232, .10),
+            rgba(13, 7, 24, .95)
+        );
+
+    box-shadow:
+        inset 0 0 10px rgba(5, 217, 232, .035),
+        0 0 4px rgba(5, 217, 232, .12);
+}
+
+
+.buttons button.function:hover {
+
+    border-color: var(--synth-cyan);
+
+    box-shadow:
+        var(--glow-cyan),
+        inset 0 0 12px rgba(5, 217, 232, .10);
+}
+
+
+/* =========================================================
+   OPERATOR BUTTONS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color: #ff8bcf;
+
+    border-color:
+        rgba(255, 0, 160, .48);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 0, 160, .10),
+            rgba(20, 5, 30, .95)
+        );
+
+    box-shadow:
+        inset 0 0 10px rgba(255, 0, 160, .035);
+}
+
+
+.buttons button.operator:hover {
+
+    color: #ffffff;
+
+    border-color: var(--synth-pink);
+
+    box-shadow:
+        var(--glow-pink),
+        inset 0 0 12px rgba(255, 0, 160, .10);
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.buttons button.memory {
+
+    color: var(--synth-purple-light);
+
+    border-color:
+        rgba(139, 44, 255, .48);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139, 44, 255, .12),
+            rgba(17, 7, 29, .95)
+        );
+}
+
+
+.buttons button.memory:hover {
+
+    color: #ffffff;
+
+    border-color: var(--synth-purple);
+
+    box-shadow: var(--glow-purple);
+}
+
+
+/* =========================================================
+   DANGER / AC
+   ========================================================= */
+
+.buttons button.danger {
+
+    color: #ff78bd;
+
+    border-color:
+        rgba(255, 42, 109, .65);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 42, 109, .14),
+            rgba(25, 5, 25, .95)
+        );
+
+    box-shadow:
+        0 0 5px rgba(255, 42, 109, .18);
+}
+
+
+.buttons button.danger:hover {
+
+    color: #ffffff;
+
+    border-color: var(--synth-pink-hot);
+
+    box-shadow:
+        0 0 5px rgba(255, 42, 109, .75),
+        0 0 18px rgba(255, 42, 109, .35);
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--synth-pink),
+            var(--synth-purple)
+        );
+
+    border:
+        1px solid #ff7dcc;
+
+    box-shadow:
+        0 0 6px rgba(255, 0, 160, .75),
+        0 0 18px rgba(139, 44, 255, .45),
+        inset 0 0 12px rgba(255, 255, 255, .12);
+
+    text-shadow:
+        0 0 6px rgba(255, 255, 255, .8);
+}
+
+
+.buttons button.equals:hover {
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff2ab3,
+            #a94dff
+        );
+
+    box-shadow:
+        0 0 8px rgba(255, 0, 160, .9),
+        0 0 25px rgba(139, 44, 255, .65),
+        inset 0 0 15px rgba(255, 255, 255, .18);
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 9px;
+
+    padding: 8px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 10, 45, .8),
+            rgba(9, 4, 17, .9)
+        );
+
+    border:
+        1px solid rgba(139, 44, 255, .35);
+
+    border-radius: 9px;
+
+    box-shadow:
+        inset 0 0 18px rgba(139, 44, 255, .04);
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 5px;
+
+    color: var(--synth-pink);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 5px rgba(255, 0, 160, .6);
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    gap: 4px;
+}
+
+
+.memory-button {
+
+    height: 27px;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    color: var(--synth-purple-light);
+
+    background:
+        #120720;
+
+    border:
+        1px solid rgba(139, 44, 255, .4);
+
+    transition:
+        .12s ease;
+}
+
+
+.memory-button:hover {
+
+    color: var(--synth-cyan-light);
+
+    border-color: var(--synth-cyan);
+
+    box-shadow: var(--glow-cyan);
+}
+
+
+.memory-button.active {
+
+    color: #ffffff;
+
+    border-color: var(--synth-pink);
+
+    box-shadow: var(--glow-pink);
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 4px;
+
+    margin-top: 4px;
+}
+
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color: var(--synth-text-muted);
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+
+    background:
+        rgba(5, 217, 232, .025);
+
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 8px;
+
+    padding: 5px 2px;
+
+    color: var(--synth-text-muted);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    opacity: .8;
+}
+
+
+.help::first-line {
+    color: var(--synth-cyan);
+}
+
+
+/* =========================================================
+   DMS CONVERSION BUTTON
+   ========================================================= */
+
+#dmsButton {
+
+    color: var(--synth-orange);
+
+    border-color:
+        rgba(255, 158, 66, .55);
+
+    box-shadow:
+        0 0 5px rgba(255, 158, 66, .12);
+}
+
+
+#dmsButton:hover {
+
+    color: #ffffff;
+
+    border-color: var(--synth-orange);
+
+    box-shadow:
+        0 0 5px rgba(255, 158, 66, .75),
+        0 0 18px rgba(255, 158, 66, .35);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .calculator {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .display {
+        min-height: 110px;
+    }
+
+    .value {
+        font-size: 24px;
+    }
+
+    .buttons {
+        gap: 6px;
+    }
+
+    .buttons button {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .memory-panel {
+        padding: 9px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .calculator {
+        padding: 9px;
+    }
+
+    .buttons {
+        gap: 5px;
+    }
+
+    .buttons button {
+        height: 46px;
+        font-size: 12px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 3px;
+    }
+
+    .memory-button {
+        font-size: 9px;
+    }
+
+    .memory-value {
+        font-size: 8px;
+    }
+}

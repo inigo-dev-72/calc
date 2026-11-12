@@ -1,0 +1,724 @@
+/* =========================================================
+   CALCULATOR - MS-DOS
+   MS-DOS 5.x / 6.x COMMAND LINE INSPIRED
+   ========================================================= */
+
+:root {
+
+    --dos-black: #000000;
+    --dos-dark: #080808;
+
+    --dos-white: #ffffff;
+    --dos-gray: #aaaaaa;
+
+    --dos-blue: #0000aa;
+    --dos-light-blue: #5555ff;
+
+    --dos-cyan: #55ffff;
+    --dos-green: #55ff55;
+    --dos-yellow: #ffff55;
+
+    --dos-red: #ff5555;
+
+    --dos-border: #aaaaaa;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    padding: 20px 12px;
+
+    background: var(--dos-black);
+
+    color: var(--dos-white);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    padding: 8px;
+
+    background: var(--dos-black);
+
+    border: 2px solid var(--dos-white);
+
+    box-shadow:
+        4px 4px 0 #555555;
+}
+
+
+/* =========================================================
+   DOS HEADER
+   ========================================================= */
+
+.calculator::before {
+
+    content: "C:\\> CALCULATOR.EXE";
+
+    height: 22px;
+
+    margin-bottom: 7px;
+
+    padding: 2px 5px;
+
+    color: var(--dos-white);
+
+    background: var(--dos-blue);
+
+    border: 1px solid var(--dos-white);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    line-height: 16px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 96px;
+
+    padding: 8px;
+
+    margin-bottom: 7px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background: var(--dos-black);
+
+    border: 2px solid var(--dos-white);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 20px;
+
+    color: var(--dos-gray);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.value {
+
+    min-height: 34px;
+
+    color: var(--dos-white);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color: var(--dos-gray);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 3px;
+
+    margin-bottom: 6px;
+}
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 25px;
+
+    padding: 2px 5px;
+
+    color: var(--dos-white);
+
+    background: var(--dos-black);
+
+    border: 1px solid var(--dos-white);
+
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.mode button:hover {
+
+    color: var(--dos-black);
+
+    background: var(--dos-white);
+}
+
+.mode button:active {
+
+    color: var(--dos-white);
+
+    background: var(--dos-blue);
+}
+
+.mode button.active {
+
+    color: var(--dos-white);
+
+    background: var(--dos-blue);
+
+    border-color: var(--dos-light-blue);
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 3px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    padding: 0;
+
+    color: var(--dos-white);
+
+    background: var(--dos-black);
+
+    border: 1px solid var(--dos-white);
+
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.buttons button:hover {
+
+    color: var(--dos-black);
+
+    background: var(--dos-white);
+}
+
+
+/* =========================================================
+   ACTIVE
+   ========================================================= */
+
+.buttons button:active {
+
+    color: var(--dos-white);
+
+    background: var(--dos-blue);
+
+    border-color: var(--dos-light-blue);
+}
+
+
+/* =========================================================
+   COMPACT
+   ========================================================= */
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBERS
+   ========================================================= */
+
+.buttons button.number {
+
+    color: var(--dos-white);
+
+    background: var(--dos-black);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FUNCTIONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color: var(--dos-cyan);
+
+    background: var(--dos-black);
+
+    border-color: var(--dos-cyan);
+
+    font-size: 11px;
+}
+
+.buttons button.function:hover {
+
+    color: var(--dos-black);
+
+    background: var(--dos-cyan);
+}
+
+
+/* =========================================================
+   OPERATORS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color: var(--dos-yellow);
+
+    background: var(--dos-black);
+
+    border-color: var(--dos-yellow);
+
+    font-size: 14px;
+}
+
+.buttons button.operator:hover {
+
+    color: var(--dos-black);
+
+    background: var(--dos-yellow);
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+.buttons button.memory {
+
+    color: var(--dos-green);
+
+    background: var(--dos-black);
+
+    border-color: var(--dos-green);
+
+    font-size: 10px;
+}
+
+.buttons button.memory:hover {
+
+    color: var(--dos-black);
+
+    background: var(--dos-green);
+}
+
+
+/* =========================================================
+   DANGER
+   ========================================================= */
+
+.buttons button.danger {
+
+    color: var(--dos-red);
+
+    background: var(--dos-black);
+
+    border-color: var(--dos-red);
+}
+
+.buttons button.danger:hover {
+
+    color: var(--dos-black);
+
+    background: var(--dos-red);
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color: var(--dos-black);
+
+    background: var(--dos-white);
+
+    border-color: var(--dos-white);
+
+    font-size: 15px;
+}
+
+.buttons button.equals:hover {
+
+    color: var(--dos-white);
+
+    background: var(--dos-blue);
+
+    border-color: var(--dos-light-blue);
+}
+
+.buttons button.equals:active {
+
+    color: var(--dos-white);
+
+    background: var(--dos-black);
+}
+
+
+/* =========================================================
+   ZERO / WIDE
+   ========================================================= */
+
+.buttons button.wide {
+    grid-column: span 2;
+}
+
+
+/* =========================================================
+   DMS
+   ========================================================= */
+
+#dmsButton {
+
+    color: var(--dos-cyan);
+
+    background: var(--dos-black);
+
+    border-color: var(--dos-cyan);
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 7px;
+
+    padding: 6px;
+
+    background: var(--dos-black);
+
+    border: 1px solid var(--dos-white);
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 4px;
+
+    color: var(--dos-white);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    gap: 3px;
+}
+
+.memory-button {
+
+    height: 27px;
+
+    padding: 0;
+
+    color: var(--dos-green);
+
+    background: var(--dos-black);
+
+    border: 1px solid var(--dos-green);
+
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.memory-button:hover {
+
+    color: var(--dos-black);
+
+    background: var(--dos-green);
+}
+
+.memory-button:active {
+
+    color: var(--dos-white);
+
+    background: var(--dos-blue);
+}
+
+.memory-button.active {
+
+    color: var(--dos-black);
+
+    background: var(--dos-green);
+
+    border-color: var(--dos-green);
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 3px;
+
+    margin-top: 3px;
+}
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color: var(--dos-green);
+
+    background: var(--dos-black);
+
+    border: 1px solid #226622;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 6px;
+
+    padding: 4px 2px;
+
+    color: var(--dos-gray);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 10px;
+
+        align-items: flex-start;
+    }
+
+    .calculator {
+
+        width: 100%;
+
+        padding: 6px;
+    }
+
+    .buttons {
+        gap: 3px;
+    }
+
+    .buttons button {
+
+        height: 42px;
+
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .calculator::before {
+        font-size: 8px;
+    }
+
+    .buttons {
+        gap: 2px;
+    }
+
+    .buttons button {
+
+        height: 39px;
+
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 2px;
+    }
+
+    .memory-button {
+
+        height: 25px;
+
+        font-size: 8px;
+    }
+
+    .memory-value {
+        font-size: 7px;
+    }
+
+    .help {
+        font-size: 7px;
+    }
+}

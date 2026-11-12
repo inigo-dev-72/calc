@@ -1,0 +1,714 @@
+/*
+ * NAV CALCULATOR
+ *
+ * MACINTOSH CLASSIC
+ *
+ * Macintosh System 1 / System 6 inspired
+ */
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+
+    --mac-black: #000000;
+    --mac-white: #ffffff;
+
+    --mac-light: #eeeeee;
+    --mac-gray: #cccccc;
+    --mac-mid: #999999;
+    --mac-dark: #666666;
+
+    --mac-desktop: #bdbdbd;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    padding: 20px 12px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #bdbdbd 0,
+            #bdbdbd 1px,
+            #c6c6c6 1px,
+            #c6c6c6 2px
+        );
+
+    color: var(--mac-black);
+
+    font-family:
+        "Geneva",
+        "Chicago",
+        "Lucida Grande",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   CALCULATOR WINDOW
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    padding: 6px;
+
+    background: var(--mac-white);
+
+    border: 2px solid var(--mac-black);
+
+    box-shadow:
+        4px 4px 0 var(--mac-black);
+}
+
+
+/* =========================================================
+   CLASSIC MAC TITLE BAR
+   ========================================================= */
+
+.calculator::before {
+
+    content: "Calculator";
+
+    position: relative;
+
+    height: 23px;
+
+    margin-bottom: 6px;
+
+    padding: 2px 5px;
+
+    color: var(--mac-black);
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            var(--mac-white) 0,
+            var(--mac-white) 2px,
+            var(--mac-black) 2px,
+            var(--mac-black) 3px,
+            var(--mac-white) 3px,
+            var(--mac-white) 5px
+        );
+
+    border: 1px solid var(--mac-black);
+
+    font-family:
+        "Chicago",
+        "Geneva",
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    line-height: 17px;
+
+    text-align: center;
+}
+
+.calculator::after {
+
+    content: "Macintosh  •  128K  •  1984";
+
+    margin: -6px 4px 8px;
+
+    color: #444;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.2px;
+
+    line-height: 11px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 96px;
+
+    padding: 8px;
+
+    margin-bottom: 6px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background: var(--mac-white);
+
+    border: 2px solid var(--mac-black);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 20px;
+
+    color: var(--mac-dark);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.value {
+
+    min-height: 34px;
+
+    color: var(--mac-black);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color: var(--mac-dark);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 4px;
+
+    margin-bottom: 6px;
+}
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 25px;
+
+    padding: 2px 5px;
+
+    color: var(--mac-black);
+
+    background: var(--mac-white);
+
+    border: 1px solid var(--mac-black);
+
+    border-radius: 0;
+
+    font-family:
+        "Geneva",
+        Arial,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.mode button:hover {
+    background: var(--mac-light);
+}
+
+.mode button:active {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+}
+
+.mode button.active {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 4px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    padding: 0;
+
+    color: var(--mac-black);
+
+    background: var(--mac-white);
+
+    border: 1px solid var(--mac-black);
+
+    border-radius: 0;
+
+    font-family:
+        "Geneva",
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.buttons button:hover {
+    background: var(--mac-light);
+}
+
+
+/* =========================================================
+   PRESSED
+   Classic Mac inverse button appearance
+   ========================================================= */
+
+.buttons button:active {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+}
+
+
+/* =========================================================
+   COMPACT BUTTONS
+   ========================================================= */
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBERS
+   ========================================================= */
+
+.buttons button.number {
+
+    color: var(--mac-black);
+
+    background: var(--mac-white);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FUNCTIONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color: var(--mac-black);
+
+    background: var(--mac-light);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   OPERATORS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color: var(--mac-black);
+
+    background: var(--mac-gray);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+.buttons button.memory {
+
+    color: var(--mac-black);
+
+    background: var(--mac-gray);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   DANGER
+   ========================================================= */
+
+.buttons button.danger {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+
+    border: 2px solid var(--mac-black);
+
+    font-weight: bold;
+}
+
+.buttons button.danger:hover {
+
+    color: var(--mac-black);
+
+    background: var(--mac-white);
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+
+    border: 2px solid var(--mac-black);
+
+    font-size: 15px;
+}
+
+.buttons button.equals:hover {
+
+    color: var(--mac-black);
+
+    background: var(--mac-white);
+}
+
+.buttons button.equals:active {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+}
+
+
+/* =========================================================
+   ZERO / WIDE
+   ========================================================= */
+
+.buttons button.wide {
+    grid-column: span 2;
+}
+
+
+/* =========================================================
+   DMS
+   ========================================================= */
+
+#dmsButton {
+
+    color: var(--mac-black);
+
+    background: var(--mac-gray);
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 7px;
+
+    padding: 6px;
+
+    background: var(--mac-white);
+
+    border: 1px solid var(--mac-black);
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 4px;
+
+    color: var(--mac-black);
+
+    font-family:
+        "Geneva",
+        Arial,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    gap: 3px;
+}
+
+.memory-button {
+
+    height: 27px;
+
+    padding: 0;
+
+    color: var(--mac-black);
+
+    background: var(--mac-white);
+
+    border: 1px solid var(--mac-black);
+
+    border-radius: 0;
+
+    font-family:
+        "Geneva",
+        Arial,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.memory-button:hover {
+    background: var(--mac-light);
+}
+
+.memory-button:active {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+}
+
+.memory-button.active {
+
+    color: var(--mac-white);
+
+    background: var(--mac-black);
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 3px;
+
+    margin-top: 3px;
+}
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color: var(--mac-black);
+
+    background: var(--mac-white);
+
+    border: 1px solid var(--mac-black);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 6px;
+
+    padding: 4px 2px;
+
+    color: var(--mac-dark);
+
+    font-family:
+        "Geneva",
+        Arial,
+        sans-serif;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .calculator {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .buttons {
+        gap: 3px;
+    }
+
+    .buttons button {
+        height: 42px;
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .calculator::before {
+        font-size: 9px;
+    }
+
+    .buttons {
+        gap: 2px;
+    }
+
+    .buttons button {
+        height: 39px;
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 2px;
+    }
+
+    .memory-button {
+        height: 25px;
+        font-size: 8px;
+    }
+
+    .memory-value {
+        font-size: 7px;
+    }
+
+    .help {
+        font-size: 7px;
+    }
+}

@@ -1,0 +1,771 @@
+/*
+ * NASA MISSION CONTROL
+ *
+ * SCIENTIFIC CALCULATOR
+ *
+ * Inspired by the industrial control consoles used in
+ * NASA Mission Control during the Apollo era.
+ */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+
+    --nasa-green: #62e967;
+    --nasa-green-bright: #8aff8e;
+    --nasa-green-dim: #398a3e;
+
+    --nasa-amber: #d6a532;
+    --nasa-amber-bright: #f0c45a;
+
+    --nasa-metal: #555750;
+    --nasa-metal-dark: #292b28;
+    --nasa-panel: #20221f;
+    --nasa-black: #070807;
+
+    --nasa-border-color: #676a63;
+    --nasa-border-dark: #30322e;
+
+    --nasa-text: #d0d2ca;
+    --nasa-text-dim: #777b73;
+
+    --terminal-border-color: var(--nasa-border-color);
+    --terminal-accent: var(--nasa-green);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #454741 0%,
+            #292b28 50%,
+            #111210 100%
+        );
+
+    color: var(--nasa-text);
+
+    font-family: "Courier New", monospace;
+
+    margin: 0;
+
+    padding: 20px 12px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 430px;
+
+    margin: 0 auto;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #656760 0%,
+            #484a44 38%,
+            #30322e 100%
+        );
+
+    border: 2px solid #7a7d75;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -3px 0 rgba(0,0,0,0.45),
+        0 12px 35px rgba(0,0,0,0.7);
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   OUTER LABELS
+   ========================================================= */
+
+.calculator::before {
+
+    content: "NASA // MISSION CONTROL // FLIGHT COMPUTATION";
+
+    position: absolute;
+
+    top: -16px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    color: var(--nasa-green);
+
+    font-family: "Courier New", monospace;
+
+    font-size: 8px;
+    font-weight: bold;
+
+    letter-spacing: 0.10em;
+
+    text-shadow:
+        0 0 4px rgba(98,233,103,0.35);
+}
+
+
+.calculator::after {
+
+    content: "APOLLO ERA // SYSTEM READY // FLIGHT OPS";
+
+    position: absolute;
+
+    bottom: -16px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    color: var(--nasa-green);
+
+    font-family: "Courier New", monospace;
+
+    font-size: 8px;
+    font-weight: bold;
+
+    letter-spacing: 0.10em;
+
+    text-shadow:
+        0 0 4px rgba(98,233,103,0.35);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    padding: 6px 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #373934,
+            #252724
+        );
+
+    border: 1px solid var(--nasa-border-dark);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.07);
+}
+
+
+.title {
+
+    color: #e1e2da;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 0.08em;
+}
+
+
+.status {
+
+    color: var(--nasa-green);
+
+    font-size: 8px;
+
+    letter-spacing: 0.08em;
+
+    text-shadow:
+        0 0 4px rgba(98,233,103,0.4);
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 10px;
+
+    padding: 10px 12px;
+
+    min-height: 78px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #071007,
+            #0a170a 45%,
+            #040904 100%
+        );
+
+    border: 2px solid #777b72;
+
+    box-shadow:
+        inset 0 0 18px rgba(0,0,0,0.95),
+        inset 0 1px 2px rgba(255,255,255,0.04),
+        0 1px 0 rgba(255,255,255,0.05);
+}
+
+
+/* =========================================================
+   DISPLAY SCANLINES
+   ========================================================= */
+
+.display::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(98,233,103,0.035) 4px
+        );
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   DISPLAY TEXT
+   ========================================================= */
+
+.expression {
+
+    position: relative;
+
+    color: var(--nasa-green-dim);
+    text-align: right;
+
+    font-size: 10px;
+
+    letter-spacing: 0.04em;
+
+    opacity: 0.9;
+}
+
+
+.value {
+
+    position: relative;
+
+    color: var(--nasa-green-bright);
+
+    font-size: 25px;
+
+    font-weight: normal;
+
+    letter-spacing: 0.06em;
+
+    text-align: right;
+
+    text-shadow:
+        0 0 4px rgba(138,255,142,0.75),
+        0 0 10px rgba(98,233,103,0.30);
+}
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 15px;
+
+    color: var(--nasa-green-bright);
+
+    text-align: right;
+
+    font-size: 10px;
+
+    /*overflow: hidden;*/
+
+    white-space: nowrap;
+}
+
+.display-indicators {
+
+    position: relative;
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    color: var(--nasa-green);
+
+    font-size: 8px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   ANGLE MODE
+   ========================================================= */
+
+.angle-mode {
+
+    color: var(--nasa-amber);
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   SCIENTIFIC AREA
+   ========================================================= */
+
+.scientific {
+
+    margin-bottom: 7px;
+
+    padding: 6px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #41433e,
+            #30322e
+        );
+
+    border: 1px solid var(--nasa-border-dark);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.045);
+}
+
+
+/* =========================================================
+   SECTION LABEL
+   ========================================================= */
+
+.section-label {
+
+    margin-bottom: 5px;
+
+    color: #858981;
+
+    font-size: 8px;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 5px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+
+    position: relative;
+
+    min-height: 38px;
+
+    padding: 5px 3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #6a6c65 0%,
+            #555750 48%,
+            #41433e 100%
+        );
+
+    border: 1px solid #292b27;
+
+    border-radius: 1px;
+
+    color: #dedfd8;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.02em;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -2px 0 rgba(0,0,0,0.25),
+        0 2px 2px rgba(0,0,0,0.45);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   BUTTON TOP MARK
+   ========================================================= */
+
+button::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 5px;
+    right: 5px;
+
+    height: 1px;
+
+    background: rgba(255,255,255,0.10);
+}
+
+
+/* =========================================================
+   BUTTON STATES
+   ========================================================= */
+
+button:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #777a72,
+            #60635b
+        );
+
+    color: #ffffff;
+}
+
+
+button:active {
+
+    transform: translateY(1px);
+
+    box-shadow:
+        inset 0 2px 3px rgba(0,0,0,0.4);
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+.memory {
+
+    color: var(--nasa-amber);
+
+    font-size: 9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #555650,
+            #3d3f3a
+        );
+}
+
+
+/* =========================================================
+   FUNCTION
+   ========================================================= */
+
+.function {
+
+    color: #d4d6ce;
+
+    background:
+        linear-gradient(
+            180deg,
+            #62645d,
+            #4a4c46
+        );
+}
+
+
+/* =========================================================
+   NUMBERS
+   ========================================================= */
+
+.number {
+
+    color: #eeeeE8;
+
+    background:
+        linear-gradient(
+            180deg,
+            #70736b,
+            #555850
+        );
+}
+
+
+/* =========================================================
+   OPERATORS
+   ========================================================= */
+
+.operator {
+
+    color: var(--nasa-amber-bright);
+
+    background:
+        linear-gradient(
+            180deg,
+            #605943,
+            #45402f
+        );
+}
+
+
+/* =========================================================
+   CLEAR / DELETE
+   ========================================================= */
+
+.clear,
+.delete {
+
+    color: #e7b46b;
+
+    background:
+        linear-gradient(
+            180deg,
+            #59493b,
+            #3d3229
+        );
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.equals {
+
+    color: #c9ffca;
+
+    background:
+        linear-gradient(
+            180deg,
+            #38633b,
+            #26452a
+        );
+
+    border-color: #4b7950;
+
+    box-shadow:
+        inset 0 1px 0 rgba(180,255,180,0.12),
+        inset 0 -2px 0 rgba(0,0,0,0.35),
+        0 0 5px rgba(98,233,103,0.15);
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    padding: 6px;
+
+    margin-top: 7px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #3b3d38,
+            #292b27
+        );
+
+    border: 1px solid var(--nasa-border-dark);
+
+    color: var(--nasa-text-dim);
+
+    font-size: 9px;
+
+    letter-spacing: 0.06em;
+}
+
+
+.help {
+
+    padding: 6px;
+
+    color: var(--nasa-text-dim);
+
+    font-size: 9px;
+
+    line-height: 1.4;
+
+    letter-spacing: 0.06em;
+}
+
+
+.memory-title {
+
+    color: var(--nasa-amber);
+
+    font-size: 9px;
+
+    letter-spacing: 0.08em;
+}
+
+
+.memory-value {
+
+    color: var(--nasa-green);
+
+    font-size: 9px;
+
+    letter-spacing: 0.06em;
+
+    text-shadow:
+        0 0 4px rgba(98,233,103,0.3);
+}
+
+
+.memory-indicator {
+
+    color: var(--nasa-amber);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+
+    margin-top: 8px;
+
+    padding-top: 6px;
+
+    border-top: 1px solid var(--nasa-border-dark);
+
+    color: var(--nasa-text-dim);
+
+    font-size: 8px;
+
+    letter-spacing: 0.08em;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   PANEL DETAILS
+   ========================================================= */
+
+.calculator {
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -3px 0 rgba(0,0,0,0.45),
+        0 12px 35px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(98,233,103,0.05);
+}
+
+
+/* =========================================================
+   TERMINAL COMPATIBILITY
+   ========================================================= */
+
+.terminal-border {
+
+    border-color: var(--terminal-border-color);
+}
+
+
+.terminal-accent {
+
+    color: var(--terminal-accent);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 18px 8px;
+    }
+
+    .calculator {
+        padding: 10px;
+    }
+
+    button {
+        min-height: 36px;
+        font-size: 10px;
+    }
+
+    .value {
+        font-size: 21px;
+    }
+}

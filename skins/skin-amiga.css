@@ -1,0 +1,314 @@
+/* =========================================================
+   AMIGA 500 / WORKBENCH
+   ========================================================= */
+
+:root {
+    --amiga-blue: #0055aa;
+    --amiga-blue-dark: #003f7f;
+    --amiga-white: #eeeeee;
+    --amiga-black: #111111;
+    --amiga-gray: #aaaaaa;
+    --amiga-border: #ffffff;
+}
+
+
+/* =========================================================
+   FONT
+   ========================================================= */
+
+@font-face {
+    font-family: "Amiga Topaz";
+    src: url("../fonts/Topaz_a500_v1.0.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    background: #202020;
+
+    font-family: "Courier New", monospace;
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator {
+    width: 360px;
+
+    padding: 14px;
+
+    background: #aaaaaa;
+
+    border: 3px solid #eeeeee;
+
+    box-shadow:
+        3px 3px 0 #111111,
+        6px 6px 0 rgba(0, 0, 0, 0.45);
+
+    color: #111111;
+}
+
+
+/* =========================================================
+   AMIGA TITLE
+   ========================================================= */
+
+.calculator::before {
+    content: "COMMODORE  AMIGA 500";
+
+    margin: 0 4px 2px;
+
+    color: #eeeeee;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 15px;
+    font-weight: normal;
+
+    letter-spacing: 1px;
+    line-height: 18px;
+
+    text-align: left;
+
+    text-shadow:
+        1px 1px 0 #111111;
+}
+
+.calculator::after {
+    content: "WORKBENCH  //  CALCULATION SYSTEM";
+
+    margin: 0 4px 9px;
+
+    color: #0055aa;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 9px;
+
+    letter-spacing: 1px;
+    line-height: 12px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+    min-height: 82px;
+
+    padding: 8px 10px;
+
+    background: #eeeeee;
+
+    border: 3px solid #111111;
+
+    box-shadow:
+        inset 2px 2px 0 #777777,
+        inset -2px -2px 0 #ffffff;
+}
+
+.expression {
+    min-height: 17px;
+
+    color: #0055aa;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 12px;
+
+    text-overflow: ellipsis;
+}
+
+.value {
+    color: #111111;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 25px;
+
+    line-height: 30px;
+
+    text-align: right;
+}
+
+.decimal-value {
+    min-height: 12px;
+
+    color: #555555;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 9px;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.buttons {
+    gap: 5px;
+
+    margin-top: 8px;
+}
+
+button {
+    min-height: 34px;
+
+    border: 2px solid #eeeeee;
+
+    background: #aaaaaa;
+
+    color: #111111;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 12px;
+
+    box-shadow:
+        2px 2px 0 #111111;
+}
+
+button:hover {
+    background: #bbbbbb;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+
+    box-shadow:
+        0 0 0 #111111;
+}
+
+
+/* =========================================================
+   BUTTON TYPES
+   ========================================================= */
+
+.number {
+    background: #cccccc;
+}
+
+.function {
+    background: #999999;
+}
+
+.operator {
+    background: #999999;
+}
+
+.memory {
+    background: #777777;
+
+    color: #eeeeee;
+}
+
+.danger {
+    background: #555555;
+
+    color: #eeeeee;
+}
+
+.equals {
+    background: #0055aa;
+
+    color: #eeeeee;
+
+    border-color: #eeeeee;
+
+    text-shadow:
+        1px 1px 0 #003f7f;
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+    margin-top: 9px;
+
+    padding: 7px;
+
+    background: #999999;
+
+    border: 2px solid #111111;
+}
+
+.memory-title {
+    margin-bottom: 5px;
+
+    color: #eeeeee;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 10px;
+
+    text-shadow:
+        1px 1px 0 #111111;
+}
+
+.memory-buttons {
+    gap: 4px;
+}
+
+.memory-button {
+    min-height: 25px;
+
+    font-size: 9px;
+}
+
+.memory-values {
+    gap: 4px;
+
+    margin-top: 4px;
+}
+
+.memory-value {
+    min-height: 18px;
+
+    padding: 2px;
+
+    background: #eeeeee;
+
+    border: 1px solid #555555;
+
+    color: #111111;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 8px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+    margin-top: 8px;
+
+    padding: 6px;
+
+    background: #0055aa;
+
+    border: 2px solid #eeeeee;
+
+    color: #eeeeee;
+
+    font-family: "Amiga Topaz", monospace;
+    font-size: 8px;
+
+    line-height: 11px;
+
+    text-align: left;
+
+    text-shadow:
+        1px 1px 0 #003f7f;
+}

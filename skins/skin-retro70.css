@@ -1,0 +1,847 @@
+/* =========================================================
+   CALCULATOR - RETRO 70s
+   1970s desktop / pocket calculator inspired
+   ========================================================= */
+
+:root {
+
+    --retro-case: #d8c8a8;
+    --retro-case-light: #eadfc4;
+    --retro-case-dark: #a89778;
+
+    --retro-panel: #5a4938;
+    --retro-panel-dark: #352b22;
+    --retro-panel-light: #796552;
+
+    --retro-brown: #68462f;
+    --retro-brown-dark: #3d291d;
+
+    --retro-orange: #d86f2b;
+    --retro-orange-light: #ee8a3d;
+    --retro-orange-dark: #9b431b;
+
+    --retro-cream: #f1e6c8;
+    --retro-black: #17130f;
+
+    --retro-red: #d52f24;
+    --retro-red-dark: #7f1814;
+
+    --retro-display: #180d08;
+    --retro-display-red: #ff4a32;
+    --retro-display-dim: #8d241b;
+
+    --retro-shadow: rgba(0, 0, 0, .45);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    padding: 20px 12px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #76664f 0%,
+            #504332 65%,
+            #30281f 100%
+        );
+
+    color: var(--retro-black);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+}
+
+
+/* =========================================================
+   CALCULATOR CASE
+   ========================================================= */
+
+.calculator {
+    width: min(380px, 100%);
+
+    padding: 9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--retro-case-light) 0%,
+            var(--retro-case) 45%,
+            var(--retro-case-dark) 100%
+        );
+
+    border: 2px solid #6f6049;
+
+    border-radius: 5px;
+
+    box-shadow:
+        6px 7px 0 var(--retro-shadow),
+        inset 2px 2px 0 rgba(255, 255, 255, .55),
+        inset -2px -2px 0 rgba(0, 0, 0, .18);
+}
+
+
+/* =========================================================
+   BRAND / HEADER
+   ========================================================= */
+
+.calculator::before {
+    content: "ELECTRONIC CALCULATOR'70";
+
+    height: 25px;
+
+    margin-bottom: 8px;
+
+    padding: 3px 7px;
+
+    color: var(--retro-cream);
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--retro-panel-light),
+            var(--retro-panel-dark)
+        );
+
+    border: 2px solid var(--retro-panel-dark);
+
+    border-radius: 2px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    line-height: 15px;
+
+    letter-spacing: 1.5px;
+
+    text-align: center;
+
+    text-shadow:
+        1px 1px 0 #000000;
+}
+
+
+/* =========================================================
+   DISPLAY FRAME
+   ========================================================= */
+
+.display {
+    min-height: 96px;
+
+    padding: 9px 8px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background:
+        linear-gradient(
+            180deg,
+            #38251b,
+            #160b07
+        );
+
+    border: 4px solid;
+
+    border-color:
+        #5c4a39
+        #eee0bd
+        #eee0bd
+        #5c4a39;
+
+    border-radius: 2px;
+
+    box-shadow:
+        inset 0 0 12px rgba(0, 0, 0, .8),
+        0 1px 2px rgba(0, 0, 0, .35);
+}
+
+
+/* =========================================================
+   DISPLAY GLOW
+   ========================================================= */
+
+.expression {
+    min-height: 20px;
+
+    color: var(--retro-display-dim);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 3px rgba(255, 55, 35, .25);
+}
+
+
+.value {
+    min-height: 34px;
+
+    color: var(--retro-display-red);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-shadow:
+        0 0 5px rgba(255, 55, 35, .45);
+}
+
+
+.decimal-value {
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color: var(--retro-display-dim);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+    gap: 4px;
+
+    margin-bottom: 7px;
+}
+
+.mode button {
+    flex: 1;
+
+    min-height: 25px;
+
+    padding: 2px 5px;
+
+    color: var(--retro-cream);
+
+    background: var(--retro-panel);
+
+    border: 2px solid;
+
+    border-color:
+        #9b8368
+        #30251c
+        #30251c
+        #9b8368;
+
+    border-radius: 2px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.mode button:hover {
+    background: var(--retro-panel-light);
+}
+
+.mode button:active {
+    border-color:
+        #30251c
+        #9b8368
+        #9b8368
+        #30251c;
+}
+
+.mode button.active {
+    color: var(--retro-black);
+
+    background: var(--retro-orange);
+
+    border-color:
+        var(--retro-orange-light)
+        var(--retro-orange-dark)
+        var(--retro-orange-dark)
+        var(--retro-orange-light);
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 4px;
+
+    padding: 6px;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--retro-panel-light),
+            var(--retro-panel-dark)
+        );
+
+    border: 2px solid;
+
+    border-color:
+        #3a2d22
+        #a38b6e
+        #a38b6e
+        #3a2d22;
+
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.buttons button {
+    height: 44px;
+
+    padding: 0;
+
+    color: var(--retro-black);
+
+    background:
+        linear-gradient(
+            180deg,
+            #eee1c3,
+            #c8b797
+        );
+
+    border: 2px solid;
+
+    border-color:
+        #fff0d0
+        #776650
+        #776650
+        #fff0d0;
+
+    border-radius: 3px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 1px 1px rgba(0, 0, 0, .35);
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.buttons button:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #f5e8cb,
+            #d7c5a2
+        );
+}
+
+
+/* =========================================================
+   PRESSED
+   ========================================================= */
+
+.buttons button:active {
+    background:
+        linear-gradient(
+            180deg,
+            #b5a181,
+            #d3c19d
+        );
+
+    border-color:
+        #776650
+        #fff0d0
+        #fff0d0
+        #776650;
+
+    padding-top: 1px;
+}
+
+.buttons button.compact {
+    height: 30px;
+    min-height: 30px;
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBERS
+   ========================================================= */
+
+.buttons button.number {
+    color: var(--retro-black);
+
+    background:
+        linear-gradient(
+            180deg,
+            #f0e5ca,
+            #cdbd9d
+        );
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FUNCTIONS
+   ========================================================= */
+
+.buttons button.function {
+    color: var(--retro-cream);
+
+    background:
+        linear-gradient(
+            180deg,
+            #765b45,
+            #493629
+        );
+
+    font-size: 11px;
+
+    text-shadow:
+        1px 1px 0 #241910;
+}
+
+.buttons button.function:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #896b51,
+            #594333
+        );
+}
+
+
+/* =========================================================
+   OPERATORS
+   ========================================================= */
+
+.buttons button.operator {
+    color: var(--retro-black);
+
+    background:
+        linear-gradient(
+            180deg,
+            #e0c58e,
+            #b9955d
+        );
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+.buttons button.memory {
+    color: var(--retro-cream);
+
+    background:
+        linear-gradient(
+            180deg,
+            #684d39,
+            #3f2f23
+        );
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   DANGER
+   ========================================================= */
+
+.buttons button.danger {
+    color: #fff1d0;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--retro-red),
+            var(--retro-red-dark)
+        );
+
+    border-color:
+        #ff987f
+        #58100d
+        #58100d
+        #ff987f;
+
+    text-shadow:
+        1px 1px 0 #50100d;
+}
+
+.buttons button.danger:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #e34332,
+            #922018
+        );
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+    color: #fff1d0;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--retro-orange-light),
+            var(--retro-orange-dark)
+        );
+
+    border-color:
+        #ffc080
+        #6b2912
+        #6b2912
+        #ffc080;
+
+    font-size: 15px;
+
+    text-shadow:
+        1px 1px 0 #6b2912;
+}
+
+.buttons button.equals:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #f39a4c,
+            #ad4d1e
+        );
+}
+
+.buttons button.equals:active {
+    background:
+        linear-gradient(
+            180deg,
+            #9b431b,
+            #d86f2b
+        );
+}
+
+
+/* =========================================================
+   DMS
+   ========================================================= */
+
+#dmsButton {
+    color: var(--retro-cream);
+
+    background:
+        linear-gradient(
+            180deg,
+            #765b45,
+            #493629
+        );
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+    margin-top: 8px;
+
+    padding: 7px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e3d4b3,
+            #b8a580
+        );
+
+    border: 2px solid;
+
+    border-color:
+        #fff0d0
+        #74614a
+        #74614a
+        #fff0d0;
+
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+    margin-bottom: 5px;
+
+    color: var(--retro-panel-dark);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    gap: 3px;
+}
+
+.memory-button {
+    height: 27px;
+
+    padding: 0;
+
+    color: var(--retro-cream);
+
+    background:
+        linear-gradient(
+            180deg,
+            #765b45,
+            #493629
+        );
+
+    border: 2px solid;
+
+    border-color:
+        #9e8568
+        #30251c
+        #30251c
+        #9e8568;
+
+    border-radius: 2px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.memory-button:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #896b51,
+            #594333
+        );
+}
+
+.memory-button:active {
+    border-color:
+        #30251c
+        #9e8568
+        #9e8568
+        #30251c;
+}
+
+.memory-button.active {
+    color: var(--retro-black);
+
+    background: var(--retro-orange);
+
+    border-color:
+        #ffc080
+        #6b2912
+        #6b2912
+        #ffc080;
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+    gap: 3px;
+
+    margin-top: 3px;
+}
+
+.memory-value {
+    padding: 3px 1px;
+
+    color: var(--retro-display-red);
+
+    background: var(--retro-display);
+
+    border: 2px solid;
+
+    border-color:
+        #49382b
+        #f0ddba
+        #f0ddba
+        #49382b;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+    margin-top: 7px;
+
+    padding: 4px 2px;
+
+    color: #67543e;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .calculator {
+        width: 100%;
+        padding: 7px;
+    }
+
+    .buttons {
+        gap: 3px;
+        padding: 5px;
+    }
+
+    .buttons button {
+        height: 42px;
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .calculator::before {
+        font-size: 8px;
+    }
+
+    .buttons {
+        gap: 2px;
+        padding: 4px;
+    }
+
+    .buttons button {
+        height: 39px;
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 2px;
+    }
+
+    .memory-button {
+        height: 25px;
+        font-size: 8px;
+    }
+
+    .memory-value {
+        font-size: 7px;
+    }
+
+    .help {
+        font-size: 7px;
+    }
+}

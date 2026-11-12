@@ -1,0 +1,740 @@
+/* =========================================================
+   CALCULATOR - WINDOWS 95
+   ========================================================= */
+
+:root {
+
+    --win95-desktop: #008080;
+
+    --win95-gray: #c0c0c0;
+    --win95-button: #dfdfdf;
+
+    --win95-white: #ffffff;
+    --win95-light: #dfdfdf;
+
+    --win95-shadow: #808080;
+    --win95-dark-shadow: #000000;
+
+    --win95-title-dark: #000080;
+    --win95-title-light: #1084d0;
+
+    --win95-window: #ffffff;
+
+    --win95-selection: #000080;
+    --win95-selection-text: #ffffff;
+
+    --win95-red: #800000;
+    --win95-green: #008000;
+}
+
+
+/* =========================================================
+   BODY / DESKTOP
+   ========================================================= */
+
+body {
+
+    padding: 20px 12px;
+
+    background:
+        var(--win95-desktop);
+
+    color:
+        #000;
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   CALCULATOR WINDOW
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    padding: 3px;
+
+    background:
+        var(--win95-gray);
+
+    border:
+        2px solid var(--win95-white);
+
+    box-shadow:
+        inset -1px -1px 0 var(--win95-dark-shadow),
+        inset 1px 1px 0 var(--win95-light),
+        3px 3px 0 rgba(0, 0, 0, .45);
+}
+
+
+/* =========================================================
+   TITLE BAR
+   ========================================================= */
+
+.calculator::before {
+
+    content: "Calculator";
+
+    height: 21px;
+
+    padding: 3px 5px;
+
+    margin-bottom: 4px;
+
+    color:
+        #ffffff;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--win95-title-dark),
+            var(--win95-title-light)
+        );
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    line-height: 15px;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 95px;
+
+    padding: 9px 8px;
+
+    margin-bottom: 5px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    background:
+        var(--win95-window);
+
+    border:
+        2px solid;
+
+    border-color:
+        var(--win95-shadow)
+        var(--win95-white)
+        var(--win95-white)
+        var(--win95-shadow);
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 20px;
+
+    color:
+        #555555;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.value {
+
+    min-height: 34px;
+
+    color:
+        #000000;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color:
+        #777777;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 3px;
+
+    margin-bottom: 5px;
+}
+
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 26px;
+
+    padding: 2px 5px;
+
+    color:
+        #000000;
+
+    background:
+        var(--win95-button);
+
+    border:
+        2px solid;
+
+    border-color:
+        var(--win95-white)
+        var(--win95-dark-shadow)
+        var(--win95-dark-shadow)
+        var(--win95-white);
+
+    border-radius: 0;
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.mode button:active {
+
+    border-color:
+        var(--win95-dark-shadow)
+        var(--win95-white)
+        var(--win95-white)
+        var(--win95-dark-shadow);
+}
+
+
+.mode button.active {
+
+    color:
+        #ffffff;
+
+    background:
+        var(--win95-title-dark);
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 3px;
+}
+
+
+/* =========================================================
+   BASE BUTTON
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    padding: 0;
+
+    color:
+        #000000;
+
+    background:
+        var(--win95-button);
+
+    border:
+        2px solid;
+
+    border-color:
+        var(--win95-white)
+        var(--win95-dark-shadow)
+        var(--win95-dark-shadow)
+        var(--win95-white);
+
+    border-radius: 0;
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+.buttons button:hover {
+
+    background:
+        #e8e8e8;
+}
+
+
+.buttons button:active {
+
+    border-color:
+        var(--win95-dark-shadow)
+        var(--win95-white)
+        var(--win95-white)
+        var(--win95-dark-shadow);
+
+    padding-top: 1px;
+    padding-left: 1px;
+}
+
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBER BUTTONS
+   ========================================================= */
+
+.buttons button.number {
+
+    color:
+        #000000;
+
+    background:
+        #dfdfdf;
+}
+
+
+/* =========================================================
+   FUNCTION BUTTONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color:
+        #000080;
+
+    background:
+        #cfcfcf;
+}
+
+
+/* =========================================================
+   OPERATOR BUTTONS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color:
+        #000000;
+
+    background:
+        #d2d2d2;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.buttons button.memory {
+
+    color:
+        #000080;
+
+    background:
+        #c4c4c4;
+}
+
+
+/* =========================================================
+   DANGER / AC
+   ========================================================= */
+
+.buttons button.danger {
+
+    color:
+        #ffffff;
+
+    background:
+        var(--win95-red);
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color:
+        #ffffff;
+
+    background:
+        var(--win95-title-dark);
+
+    border-color:
+        var(--win95-white)
+        #000000
+        #000000
+        var(--win95-white);
+
+    font-size:
+        15px;
+}
+
+
+.buttons button.equals:hover {
+
+    background:
+        #0000a8;
+}
+
+
+/* =========================================================
+   DMS
+   ========================================================= */
+
+#dmsButton {
+
+    color:
+        #000080;
+
+    background:
+        #c4c4c4;
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 6px;
+
+    padding: 6px;
+
+    background:
+        var(--win95-gray);
+
+    border:
+        2px solid;
+
+    border-color:
+        var(--win95-shadow)
+        var(--win95-white)
+        var(--win95-white)
+        var(--win95-shadow);
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 4px;
+
+    color:
+        #000000;
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    gap: 3px;
+}
+
+
+.memory-button {
+
+    height: 27px;
+
+    padding: 0;
+
+    color:
+        #000000;
+
+    background:
+        var(--win95-button);
+
+    border:
+        2px solid;
+
+    border-color:
+        var(--win95-white)
+        var(--win95-dark-shadow)
+        var(--win95-dark-shadow)
+        var(--win95-white);
+
+    border-radius: 0;
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.memory-button:active {
+
+    border-color:
+        var(--win95-dark-shadow)
+        var(--win95-white)
+        var(--win95-white)
+        var(--win95-dark-shadow);
+}
+
+
+.memory-button.active {
+
+    color:
+        #ffffff;
+
+    background:
+        var(--win95-title-dark);
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 3px;
+
+    margin-top: 3px;
+}
+
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color:
+        #000000;
+
+    background:
+        #ffffff;
+
+    border:
+        2px solid;
+
+    border-color:
+        var(--win95-shadow)
+        var(--win95-white)
+        var(--win95-white)
+        var(--win95-shadow);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 6px;
+
+    padding: 4px 2px;
+
+    color:
+        #444444;
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 10px;
+
+        align-items: flex-start;
+    }
+
+    .calculator {
+
+        width: 100%;
+
+        padding: 3px;
+    }
+
+    .buttons {
+        gap: 3px;
+    }
+
+    .buttons button {
+
+        height: 42px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .buttons {
+        gap: 2px;
+    }
+
+    .buttons button {
+
+        height: 39px;
+
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 2px;
+    }
+
+    .memory-button {
+
+        height: 25px;
+
+        font-size: 8px;
+    }
+
+    .memory-value {
+        font-size: 7px;
+    }
+
+    .help {
+        font-size: 7px;
+    }
+}

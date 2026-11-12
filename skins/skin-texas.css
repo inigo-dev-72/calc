@@ -1,0 +1,916 @@
+/* =========================================================
+   CALCULATOR TEXAS INSTRUMENTS
+   ========================================================= */
+
+:root {
+
+    --ti-body: #202b33;
+    --ti-body-light: #2c3942;
+    --ti-body-dark: #151d23;
+
+    --ti-panel: #26333c;
+
+    --ti-display: #c7d0c5;
+    --ti-display-dark: #aeb8ad;
+
+    --ti-number: #e5e7e5;
+    --ti-number-hover: #f0f2f0;
+
+    --ti-function: #405c70;
+    --ti-function-hover: #4d6b80;
+
+    --ti-operator: #536b7b;
+    --ti-operator-hover: #607b8d;
+
+    --ti-memory: #394b58;
+
+    --ti-danger: #744b4b;
+
+    --ti-equals: #526a79;
+
+    --ti-text: #172027;
+    --ti-text-light: #e3e7e9;
+    --ti-text-muted: #91a0aa;
+
+    --ti-blue: #6d8ca1;
+    --ti-green: #6d9275;
+
+    --ti-border: #10171c;
+
+    --ti-radius: 4px;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    padding: 20px 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #11191f,
+            #26343d
+        );
+
+    color: var(--ti-text-light);
+
+    font-family:
+        "Arial",
+        "Helvetica Neue",
+        sans-serif;
+}
+
+
+/* =========================================================
+   CALCULATOR BODY
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    padding: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--ti-body-light),
+            var(--ti-body-dark)
+        );
+
+    border:
+        1px solid #10171c;
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, .55),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
+
+    user-select: none;
+}
+
+
+/* =========================================================
+   CALCULATOR HEADER
+   ========================================================= */
+
+.calculator::before {
+
+    content: "TEXAS INSTRUMENTS  TI-30";
+
+    margin: 0 4px 2px;
+
+    color: #f2eee2;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    line-height: 16px;
+
+    text-align: left;
+}
+
+
+.calculator::after {
+
+    content: "SCIENTIFIC CALCULATOR  •  1976";
+
+    margin: 0 4px 8px;
+
+    color: #c6c0ad;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.3px;
+
+    line-height: 11px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 95px;
+
+    padding: 9px 12px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--ti-display),
+            var(--ti-display-dark)
+        );
+
+    border:
+        2px solid #11181c;
+
+    border-radius: 3px;
+
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 20px;
+
+    color: #3d4941;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+@font-face {
+    font-family: "ti83pluslarge";
+    src: url("../fonts/ti-83-plus-large.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.value {
+
+    min-height: 34px;
+
+    color: #111914;
+
+    font-family:
+        "ti83pluslarge",
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    /*text-overflow: ellipsis;*/
+
+    letter-spacing: -.5px;
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color: #59645b;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 5px;
+
+    margin-bottom: 7px;
+}
+
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 27px;
+
+    padding: 3px 7px;
+
+    background:
+        var(--ti-body-dark);
+
+    color: var(--ti-text-muted);
+
+    border:
+        1px solid #11181d;
+
+    border-radius: 3px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+
+.mode button.active {
+
+    color: #dce8df;
+
+    background: #3c5647;
+
+    border-color: #1c2920;
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 5px;
+}
+
+
+/* =========================================================
+   ALL BUTTONS
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    padding: 0;
+
+    border-radius: var(--ti-radius);
+
+    border:
+        1px solid var(--ti-border);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: var(--ti-text-light);
+
+    background:
+        linear-gradient(
+            180deg,
+            #4a5962,
+            #34434d
+        );
+
+    box-shadow:
+        0 2px 2px rgba(0, 0, 0, .4),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
+
+    transition:
+        background .08s ease,
+        transform .05s ease;
+}
+
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+   ========================================================= */
+
+.buttons button:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #566771,
+            #3e505b
+        );
+}
+
+
+/* =========================================================
+   BUTTON ACTIVE
+   ========================================================= */
+
+.buttons button:active {
+
+    transform:
+        translateY(1px);
+
+    box-shadow:
+        inset 0 2px 3px rgba(0, 0, 0, .3);
+}
+
+
+/* =========================================================
+   NUMBER BUTTONS
+   ========================================================= */
+
+.buttons button.number {
+
+    color: #182027;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--ti-number),
+            #cdd1d0
+        );
+
+    border-color:
+        #11181d;
+
+    box-shadow:
+        0 2px 2px rgba(0, 0, 0, .35),
+        inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+
+
+.buttons button.number:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--ti-number-hover),
+            #d8dcda
+        );
+}
+
+
+/* =========================================================
+   FUNCTION BUTTONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color: #e8f0f4;
+
+    background:
+        linear-gradient(
+            180deg,
+            #4b6678,
+            #354e5e
+        );
+
+    border-color:
+        #18232b;
+}
+
+
+.buttons button.function:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #587589,
+            #405d6e
+        );
+}
+
+
+/* =========================================================
+   OPERATOR BUTTONS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color: #eef3f5;
+
+    background:
+        linear-gradient(
+            180deg,
+            #5b7180,
+            #435967
+        );
+
+    border-color:
+        #1b262d;
+}
+
+
+.buttons button.operator:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #668090,
+            #4b6372
+        );
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.buttons button.memory {
+
+    color: #d7e2e8;
+
+    background:
+        linear-gradient(
+            180deg,
+            #435663,
+            #32444f
+        );
+}
+
+
+.buttons button.memory:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #506675,
+            #3b4e5a
+        );
+}
+
+
+/* =========================================================
+   DANGER / AC
+   ========================================================= */
+
+.buttons button.danger {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #805656,
+            #623f3f
+        );
+
+    border-color:
+        #2c1b1b;
+}
+
+
+.buttons button.danger:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #936565,
+            #704747
+        );
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #607b8d,
+            #455f70
+        );
+
+    border-color:
+        #1b272f;
+
+    box-shadow:
+        0 2px 2px rgba(0, 0, 0, .4),
+        inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+
+
+.buttons button.equals:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #6d899b,
+            #4f697a
+        );
+}
+
+
+/* =========================================================
+   DMS BUTTON
+   ========================================================= */
+
+#dmsButton {
+
+    color: #dbe7dc;
+
+    background:
+        linear-gradient(
+            180deg,
+            #536b59,
+            #3d5142
+        );
+
+    border-color:
+        #1c2a20;
+}
+
+
+#dmsButton:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #617d68,
+            #465c4c
+        );
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 9px;
+
+    padding: 8px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #293740,
+            #1c272e
+        );
+
+    border:
+        1px solid #11181d;
+
+    border-radius: 5px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 5px;
+
+    color: #9aa8b0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    gap: 4px;
+}
+
+
+.memory-button {
+
+    height: 27px;
+
+    padding: 0;
+
+    color: #d7e0e5;
+
+    background:
+        linear-gradient(
+            180deg,
+            #475964,
+            #354650
+        );
+
+    border:
+        1px solid #151e24;
+
+    border-radius: 3px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.memory-button:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #536873,
+            #40535e
+        );
+}
+
+
+.memory-button.active {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #5d7b68,
+            #425b4b
+        );
+
+    border-color:
+        #273b2d;
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 4px;
+
+    margin-top: 4px;
+}
+
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color: #87959d;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+
+    background:
+        rgba(0, 0, 0, .12);
+
+    border-radius: 2px;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 8px;
+
+    padding: 5px 2px;
+
+    color: #82919a;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    opacity: .9;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 10px;
+
+        align-items: flex-start;
+    }
+
+    .calculator {
+
+        width: 100%;
+
+        padding: 10px;
+    }
+
+    .display {
+        min-height: 90px;
+    }
+
+    .value {
+        font-size: 23px;
+    }
+
+    .buttons {
+        gap: 4px;
+    }
+
+    .buttons button {
+
+        height: 42px;
+
+        font-size: 12px;
+    }
+
+    .memory-panel {
+        padding: 7px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .calculator {
+        padding: 8px;
+    }
+
+    .display {
+
+        min-height: 84px;
+
+        padding: 8px 10px;
+    }
+
+    .value {
+        font-size: 21px;
+    }
+
+    .buttons {
+        gap: 4px;
+    }
+
+    .buttons button {
+
+        height: 39px;
+
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 3px;
+    }
+
+    .memory-button {
+
+        height: 25px;
+
+        font-size: 8px;
+    }
+
+    .memory-value {
+        font-size: 7px;
+    }
+
+    .help {
+        font-size: 8px;
+    }
+}

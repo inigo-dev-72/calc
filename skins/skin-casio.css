@@ -1,0 +1,457 @@
+/*
+ * NAV CALCULATOR
+ *
+ * CASIO-INSPIRED SCIENTIFIC CALCULATOR
+ *
+ * Classic Japanese scientific calculator aesthetic.
+ * Grey plastic body, LCD display and compact keys.
+ */
+
+
+/* =========================================================
+   FONT
+   ========================================================= */
+
+@font-face {
+    font-family: "Casio";
+    src: url("../fonts/casio-calculator-font.otf") format("truetype");
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    /*background: #d0d0cc;*/
+    background: #62655e;
+
+    color: #202020;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   CALCULATOR BODY
+   ========================================================= */
+
+.calculator {
+    width: 420px;
+
+    padding: 18px;
+
+    background: #bcbcb8;
+
+    border: 1px solid #858581;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, .25),
+        inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+
+.calculator::before {
+    content: "CASIO  fx-82MS";
+
+    margin: 0 4px 9px;
+
+    color: #202020;
+
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+    line-height: 16px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+    background: #aeb3a1;
+
+    border: 3px solid #70736a;
+
+    border-radius: 4px;
+
+    margin-bottom: 11px;
+
+    padding: 9px 11px 8px;
+
+    min-height: 100px;
+
+    text-align: right;
+
+    box-shadow:
+        inset 0 2px 5px rgba(0, 0, 0, .28),
+        0 1px 0 rgba(255, 255, 255, .4);
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+    height: 25px;
+
+    color: #555a50;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MAIN LCD VALUE
+   ========================================================= */
+
+.value {
+    min-height: 39px;
+
+    color: #182018;
+
+    font-family: "Casio", "Courier New", monospace;
+
+    font-size: 20px;
+
+    line-height: 30px;
+
+    letter-spacing: 0;
+
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, .12);
+}
+
+
+/* =========================================================
+   SECONDARY DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+    min-height: 17px;
+
+    color: #555a50;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 10px;
+
+    line-height: 17px;
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 5px;
+}
+
+
+/* =========================================================
+   COMPACT BUTTONS
+   ========================================================= */
+
+button.compact {
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+
+    border-radius: 3px;
+
+    background: #aaa9a5;
+
+    color: #383a36;
+
+    border-color: #7f807b;
+
+    box-shadow:
+        0 2px 1px rgba(0, 0, 0, .25),
+        inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+    height: 43px;
+
+    border: 1px solid #858581;
+
+    border-radius: 4px;
+
+    background: #d5d5d1;
+
+    color: #252624;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 2px 1px rgba(0, 0, 0, .18),
+        inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+
+button:hover {
+    background: #ddddda;
+}
+
+button:active {
+    background: #bdbdb9;
+
+    box-shadow:
+        inset 0 2px 2px rgba(0, 0, 0, .22);
+}
+
+
+/* =========================================================
+   BUTTON TYPES
+   ========================================================= */
+
+.number {
+    color: #20211f;
+
+    font-weight: bold;
+}
+
+.operator {
+    color: #242522;
+
+    font-weight: bold;
+}
+
+.function {
+    color: #252725;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.memory {
+    color: #30322f;
+}
+
+
+/* =========================================================
+   DANGER / AC
+   ========================================================= */
+
+.danger {
+    color: #30322f;
+
+    font-weight: bold;
+
+    background: #c3c3bf;
+}
+
+.danger:hover {
+    background: #cecec9;
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.equals {
+    background: #555852;
+
+    color: #f2f2ed;
+
+    border-color: #454842;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 2px 1px rgba(0, 0, 0, .25),
+        inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+
+.equals:hover {
+    background: #62655e;
+}
+
+.equals:active {
+    background: #454842;
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+    margin-top: 11px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #92928d;
+}
+
+.memory-title {
+    color: #5b5d58;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: .5px;
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   M1 - M6
+   ========================================================= */
+
+.memory-buttons {
+    gap: 5px;
+}
+
+.memory-button {
+    height: 29px;
+
+    border-radius: 3px;
+
+    background: #aaa9a5;
+
+    color: #383a36;
+
+    border-color: #7f807b;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.memory-button:hover {
+    background: #b5b4af;
+}
+
+.memory-button:active {
+    background: #979792;
+}
+
+
+/* =========================================================
+   SELECTED MEMORY
+   ========================================================= */
+
+.memory-button.active {
+    background: #555852;
+
+    color: #f2f2ed;
+
+    border-color: #454842;
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+    gap: 5px;
+
+    margin-top: 4px;
+}
+
+.memory-value {
+    text-align: center;
+
+    color: #60625d;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   MEMORY OPERATIONS
+   ========================================================= */
+
+.memory-actions {
+    gap: 5px;
+
+    margin-top: 7px;
+}
+
+.memory-action {
+    height: 28px;
+
+    background: #c6c6c2;
+
+    color: #444641;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.memory-action:hover {
+    background: #d0d0cc;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+    margin-top: 10px;
+
+    color: #666762;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+button:focus {
+    outline: none;
+}
+
+button:focus-visible {
+    outline: 1px solid #555852;
+
+    outline-offset: 1px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 460px) {
+
+    .calculator {
+        width: 100%;
+
+        max-width: 420px;
+
+        margin: 10px;
+    }
+}

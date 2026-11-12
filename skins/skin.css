@@ -1,0 +1,285 @@
+/*
+ * NAV CALCULATOR
+ *
+ * COMMON SKIN STYLES
+ *
+ * Structural styles shared by all calculator skins.
+ */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator {
+    position: relative;
+
+    width: min(420px, 100%);
+}
+
+
+/* =========================================================
+   CALCULATOR DECORATIVE ELEMENTS
+   ========================================================= */
+
+.calculator::before,
+.calculator::after {
+    display: block;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+    min-width: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DISPLAY VALUE
+   ========================================================= */
+
+.value {
+    min-width: 0;
+
+    white-space: nowrap;
+    /*overflow: hidden;*/
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+    min-width: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HORIZONTAL DISPLAY SCROLLING
+   ========================================================= */
+
+#expression,
+#value {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    scrollbar-width: none;
+}
+
+#expression::-webkit-scrollbar,
+#value::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+    display: flex;
+}
+
+
+/* =========================================================
+   MAIN BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+    min-width: 0;
+
+    cursor: pointer;
+}
+
+button.compact {
+    min-height: 30px;
+}
+
+
+/* =========================================================
+   BUTTON TYPES
+   ========================================================= */
+
+.number,
+.function,
+.operator,
+.memory,
+.danger,
+.equals,
+.wide {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   EQUALS / WIDE
+   ========================================================= */
+
+.equals,
+.wide {
+    grid-column: span 2;
+}
+
+
+/* =========================================================
+   DMS
+   ========================================================= */
+
+#dmsButton {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.memory-button {
+    min-width: 0;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.memory-value {
+    min-width: 0;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MEMORY ACTIONS
+   ========================================================= */
+
+.memory-actions {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.memory-action {
+    min-width: 0;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .calculator {
+        width: 100%;
+    }
+}

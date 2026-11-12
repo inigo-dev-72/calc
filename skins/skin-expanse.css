@@ -1,0 +1,904 @@
+/* =========================================================
+   CALCULATOR - THE EXPANSE INSPIRED
+   Functional spacecraft / engineering terminal
+   ========================================================= */
+
+:root {
+
+    --expanse-black: #05090b;
+    --expanse-background: #071014;
+    --expanse-panel: #0b171c;
+    --expanse-panel-2: #0e1d23;
+
+    --expanse-cyan: #53d8df;
+    --expanse-cyan-bright: #7ef4f2;
+    --expanse-cyan-dark: #236a72;
+
+    --expanse-orange: #f28b38;
+    --expanse-orange-bright: #ffad57;
+
+    --expanse-green: #69c98a;
+    --expanse-red: #d95c5c;
+
+    --expanse-text: #b9d4d7;
+    --expanse-text-bright: #dff8f8;
+    --expanse-muted: #527177;
+
+    --expanse-border: #19353b;
+    --expanse-grid: rgba(83, 216, 223, .07);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    padding: 20px 12px;
+
+    color: var(--expanse-text);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    background-color: var(--expanse-background);
+
+    background-image:
+        linear-gradient(
+            var(--expanse-grid) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            var(--expanse-grid) 1px,
+            transparent 1px
+        );
+
+    background-size: 28px 28px;
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    padding: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0c171c,
+            #050a0d
+        );
+
+    border:
+        1px solid var(--expanse-border);
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .65),
+        inset 0 0 25px rgba(83, 216, 223, .025);
+}
+
+
+/* =========================================================
+   TOP TELEMETRY BAR
+   ========================================================= */
+
+.calculator::before {
+
+    content: "SYS // CALC // DEG";
+
+    height: 20px;
+
+    padding: 3px 8px;
+
+    margin-bottom: 8px;
+
+    color: var(--expanse-cyan);
+
+    background:
+        #09151a;
+
+    border-left:
+        3px solid var(--expanse-cyan);
+
+    border-bottom:
+        1px solid var(--expanse-border);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    line-height: 14px;
+
+    letter-spacing: 1px;
+}
+
+
+.calculator::after {
+
+    content: "R O C I N A N T E  //  NAVIGATION SYSTEM";
+
+    margin: -6px 4px 8px;
+
+    color: #63d7d2;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    line-height: 11px;
+
+    text-align: left;
+
+    opacity: 0.75;
+
+    text-shadow:
+        0 0 3px rgba(99, 215, 210, 0.6);
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 95px;
+
+    padding: 9px 12px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background:
+        #03080a;
+
+    border:
+        1px solid #1c3d43;
+
+    border-radius: 2px;
+
+    box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, .85);
+}
+
+
+/* =========================================================
+   DISPLAY TOP MARK
+   ========================================================= */
+
+.display::before {
+
+    content: "CALCULATION // ACTIVE";
+
+    position: absolute;
+
+    margin-top: -73px;
+
+    color: var(--expanse-muted);
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 20px;
+
+    color: var(--expanse-orange);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.value {
+
+    min-height: 34px;
+
+    color: var(--expanse-cyan-bright);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-shadow:
+        0 0 7px rgba(83, 216, 223, .22);
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color: var(--expanse-muted);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 4px;
+
+    margin-bottom: 6px;
+}
+
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 26px;
+
+    padding: 3px 7px;
+
+    color: var(--expanse-muted);
+
+    background:
+        #0b181d;
+
+    border:
+        1px solid var(--expanse-border);
+
+    border-radius: 2px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.mode button.active {
+
+    color: var(--expanse-black);
+
+    background:
+        var(--expanse-cyan);
+
+    border-color:
+        var(--expanse-cyan);
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+
+    gap: 4px;
+}
+
+
+/* =========================================================
+   BASE BUTTON
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    padding: 0;
+
+    color: var(--expanse-text);
+
+    background:
+        #102127;
+
+    border:
+        1px solid #1b3940;
+
+    border-radius: 2px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    transition:
+        background .08s ease,
+        border-color .08s ease,
+        color .08s ease,
+        transform .05s ease;
+}
+
+
+.buttons button:hover {
+
+    color: var(--expanse-text-bright);
+
+    background:
+        #153039;
+
+    border-color:
+        #28555e;
+}
+
+
+.buttons button:active {
+
+    transform:
+        translateY(1px);
+}
+
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBER BUTTONS
+   ========================================================= */
+
+.buttons button.number {
+
+    color: var(--expanse-cyan);
+
+    background:
+        #0b181d;
+
+    border-color:
+        #17343a;
+}
+
+
+.buttons button.number:hover {
+
+    color: var(--expanse-cyan-bright);
+
+    background:
+        #10262c;
+
+    border-color:
+        var(--expanse-cyan-dark);
+}
+
+
+/* =========================================================
+   FUNCTION BUTTONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color: var(--expanse-cyan-bright);
+
+    background:
+        #0a2025;
+
+    border-color:
+        #1c555c;
+
+    border-radius: 2px;
+}
+
+
+.buttons button.function:hover {
+
+    background:
+        #103139;
+
+    border-color:
+        var(--expanse-cyan);
+}
+
+
+/* =========================================================
+   OPERATOR BUTTONS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color: var(--expanse-orange);
+
+    background:
+        #201811;
+
+    border-color:
+        #594027;
+
+    border-radius: 2px;
+}
+
+
+.buttons button.operator:hover {
+
+    color: var(--expanse-orange-bright);
+
+    background:
+        #2a1e14;
+
+    border-color:
+        var(--expanse-orange);
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.buttons button.memory {
+
+    color: var(--expanse-green);
+
+    background:
+        #0c1d18;
+
+    border-color:
+        #214b3d;
+
+    border-radius: 2px;
+}
+
+
+.buttons button.memory:hover {
+
+    background:
+        #102820;
+
+    border-color:
+        var(--expanse-green);
+}
+
+
+/* =========================================================
+   DANGER / AC
+   ========================================================= */
+
+.buttons button.danger {
+
+    color: #ffdada;
+
+    background:
+        #291416;
+
+    border-color:
+        #663035;
+
+    border-radius: 2px;
+}
+
+
+.buttons button.danger:hover {
+
+    color: #fff;
+
+    background:
+        #39191c;
+
+    border-color:
+        var(--expanse-red);
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color: #031012;
+
+    background:
+        var(--expanse-cyan);
+
+    border-color:
+        var(--expanse-cyan-bright);
+
+    border-radius:
+        2px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 8px rgba(83, 216, 223, .08);
+}
+
+
+.buttons button.equals:hover {
+
+    color: #02090a;
+
+    background:
+        var(--expanse-cyan-bright);
+
+    border-color:
+        #a4ffff;
+}
+
+
+/* =========================================================
+   DMS BUTTON
+   ========================================================= */
+
+#dmsButton {
+
+    color: var(--expanse-orange);
+
+    background:
+        #201811;
+
+    border-color:
+        #594027;
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 8px;
+
+    padding: 8px;
+
+    background:
+        #081318;
+
+    border:
+        1px solid var(--expanse-border);
+
+    border-radius: 2px;
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 5px;
+
+    color: var(--expanse-cyan);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-align: left;
+}
+
+
+.memory-title::before {
+
+    content: "> ";
+
+    color: var(--expanse-orange);
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+
+    gap: 4px;
+}
+
+
+.memory-button {
+
+    height: 27px;
+
+    padding: 0;
+
+    color: var(--expanse-green);
+
+    background:
+        #0b1c18;
+
+    border:
+        1px solid #21463b;
+
+    border-radius: 2px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.memory-button:hover {
+
+    color: #9be8b4;
+
+    background:
+        #102820;
+
+    border-color:
+        var(--expanse-green);
+}
+
+
+.memory-button.active {
+
+    color: #06100b;
+
+    background:
+        var(--expanse-green);
+
+    border-color:
+        var(--expanse-green);
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 4px;
+
+    margin-top: 4px;
+}
+
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color: #45666c;
+
+    background:
+        #040b0e;
+
+    border:
+        1px solid #10272c;
+
+    border-radius: 2px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 8px;
+
+    padding: 6px 3px;
+
+    color: #426168;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    line-height: 1.6;
+
+    text-align: left;
+
+    border-top:
+        1px solid #122b31;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 10px;
+
+        align-items: flex-start;
+    }
+
+    .calculator {
+
+        width: 100%;
+
+        padding: 10px;
+    }
+
+    .display {
+
+        min-height: 90px;
+    }
+
+    .value {
+
+        font-size: 23px;
+    }
+
+    .buttons {
+
+        gap: 4px;
+    }
+
+    .buttons button {
+
+        height: 42px;
+
+        font-size: 12px;
+    }
+
+    .memory-panel {
+
+        padding: 7px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .calculator {
+
+        padding: 8px;
+    }
+
+    .display {
+
+        min-height: 84px;
+
+        padding: 8px 10px;
+    }
+
+    .value {
+
+        font-size: 21px;
+    }
+
+    .buttons {
+
+        gap: 3px;
+    }
+
+    .buttons button {
+
+        height: 39px;
+
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+
+        gap: 3px;
+    }
+
+    .memory-button {
+
+        height: 25px;
+
+        font-size: 8px;
+    }
+
+    .memory-value {
+
+        font-size: 7px;
+    }
+
+    .help {
+
+        font-size: 8px;
+    }
+}

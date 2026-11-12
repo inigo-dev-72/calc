@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Calculator</title>
+    <link rel="icon" type="image/png" href="icons/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="skins/skin.css">
+    <link rel="stylesheet" href="skins/skin-hp.css" id="calculator-skin">
+    <link rel="stylesheet" href="css/skin-selector.css">
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <!-- DISPLAY -->
+    <div class="display">
+
+        <div id="expression" class="expression"></div>
+
+        <div id="value" class="value">
+            0
+        </div>
+
+        <div id="decimalValue" class="decimal-value"></div>
+
+    </div>
+
+    <!-- CALCULATOR BUTTONS -->
+    <div class="buttons">
+
+        <!-- MEMORY -->
+        <button class="memory compact" data-action="memoryStore">MS</button>
+        <button class="memory compact" data-action="memoryRecall">MR</button>
+        <button class="memory compact" data-action="memoryAdd">M+</button>
+        <button class="memory compact" data-action="memorySubtract">M−</button>
+        <button class="memory compact" data-action="memoryClear">MC</button>
+
+        <!-- TRIGONOMETRY -->
+        <button class="operator compact" data-action="convertDMS">°′″</button>
+        <button class="function compact" data-action="insertConstant">π</button>
+        <button class="function compact" data-function="sin">sin</button>
+        <button class="function compact" data-function="cos">cos</button>
+        <button class="function compact" data-function="tan">tan</button>
+
+        <!-- INVERSE TRIGONOMETRY -->
+        <button class="operator compact" data-text="(">(</button>
+        <button class="operator compact" data-text=")">)</button>
+        <button class="function compact" data-function="asin">asin</button>
+        <button class="function compact" data-function="acos">acos</button>
+        <button class="function compact" data-function="atan">atan</button>
+
+        <button class="operator compact" data-action="toggleSign">±</button>
+        <button class="function compact" data-action="reciprocal">1/X</button>
+        <button class="function compact" data-action="insertSquareRoot">√</button>
+        <button class="function compact" data-action="insertSquare">x²</button>
+        <button class="function compact" data-function="log">log</button>
+
+        <!-- NUMBERS -->
+        <button class="number" data-text="7">7</button>
+        <button class="number" data-text="8">8</button>
+        <button class="number" data-text="9">9</button>
+        <button class="danger" data-action="clearAll">AC</button>
+        <button class="danger" data-action="backspace">DEL</button>
+
+        <button class="number" data-text="4">4</button>
+        <button class="number" data-text="5">5</button>
+        <button class="number" data-text="6">6</button>
+        <button class="operator" data-text="×">×</button>
+        <button class="operator" data-text="÷">/</button>
+
+        <button class="number" data-text="1">1</button>
+        <button class="number" data-text="2">2</button>
+        <button class="number" data-text="3">3</button>
+        <button class="operator" data-text="+">+</button>
+        <button class="operator" data-text="-">-</button>
+
+        <button class="number" data-text="0">0</button>
+        <button class="number" data-text=".">.</button>
+        <button class="operator" data-action="insertAnswer">ANS</button>
+        <button class="equals" data-action="calculate">=</button>
+
+    </div>
+
+    <!-- MEMORIES -->
+    <div class="memory-panel">
+
+        <div class="memory-title">
+            MEMORIES
+        </div>
+
+        <div class="memory-buttons">
+            <button id="memory-1" class="memory-button memory" data-memory="0">M1</button>
+            <button id="memory-2" class="memory-button memory" data-memory="1">M2</button>
+            <button id="memory-3" class="memory-button memory" data-memory="2">M3</button>
+            <button id="memory-4" class="memory-button memory" data-memory="3">M4</button>
+            <button id="memory-5" class="memory-button memory" data-memory="4">M5</button>
+            <button id="memory-6" class="memory-button memory" data-memory="5">M6</button>
+        </div>
+
+        <div class="memory-values">
+            <div id="memory-value-1" class="memory-value">—</div>
+            <div id="memory-value-2" class="memory-value">—</div>
+            <div id="memory-value-3" class="memory-value">—</div>
+            <div id="memory-value-4" class="memory-value">—</div>
+            <div id="memory-value-5" class="memory-value">—</div>
+            <div id="memory-value-6" class="memory-value">—</div>
+        </div>
+    </div>
+
+    <div class="help">
+        Supports implicit multiplication: sin(40°)cos(20°)
+    </div>
+</div>
+
+<!-- STYLE MUSEUM -->
+<div id="skin-selector-modal" class="skin-selector-modal">
+    <div class="skin-museum">
+        <div class="skin-museum-header">
+            <div>
+                <div class="museum-title">
+                    CALCULATOR MUSEUM
+                </div>
+
+                <div class="museum-subtitle">
+                    DIGITAL MACHINES // 1974—1990s
+                </div>
+            </div>
+
+            <button class="skin-selector-close" id="skin-selector-close">
+                ×
+            </button>
+        </div>
+
+        <div id="skin-list" class="skin-list"></div>
+    </div>
+</div>
+
+<script src="js/calculator.js"></script>
+<script src="js/skin-selector.js"></script>
+
+</body>
+</html>

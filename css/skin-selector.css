@@ -1,0 +1,2116 @@
+/* =========================================================
+   MUSEUM
+   ========================================================= */
+
+.skin-selector-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.88);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.18s ease,
+        visibility 0.18s ease;
+}
+
+.skin-selector-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   MUSEUM WINDOW
+   ========================================================= */
+
+.skin-museum {
+    width: min(920px, 100%);
+    max-height: 88vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #151515;
+
+    border: 1px solid #444;
+
+    box-shadow:
+        0 0 0 1px #080808,
+        0 20px 70px rgba(0, 0, 0, 0.9);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.skin-museum-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 14px;
+
+    background: #202020;
+
+    border-bottom: 1px solid #3c3c3c;
+
+    color: #eee;
+
+    font-family: "Courier New", monospace;
+}
+
+.museum-title {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.museum-subtitle {
+    margin-top: 3px;
+
+    color: #777;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   CLOSE
+   ========================================================= */
+
+.skin-selector-close {
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    border: 1px solid #555;
+
+    background: #292929;
+
+    color: #ccc;
+
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.skin-selector-close:hover {
+    background: #444;
+    color: #fff;
+}
+
+
+/* =========================================================
+   COLLECTION
+   ========================================================= */
+
+.skin-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    padding: 16px;
+
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #292929,
+            #111 70%
+        );
+}
+
+
+/* =========================================================
+   MUSEUM PIECE
+   ========================================================= */
+
+.skin-card {
+
+    position: relative;
+
+    min-width: 0;
+    min-height: 145px;
+
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    font-family: "Courier New", monospace;
+
+    transition:
+        transform 0.15s ease;
+}
+
+.skin-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* =========================================================
+   MACHINE
+   ========================================================= */
+
+.museum-machine {
+
+    position: relative;
+
+    width: 100%;
+    height: 112px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        var(--skin-background);
+
+    border:
+        2px solid
+        color-mix(
+            in srgb,
+            var(--skin-accent) 35%,
+            #222
+        );
+
+    box-shadow:
+        0 7px 12px rgba(0, 0, 0, 0.45);
+
+    overflow: hidden;
+
+    transition:
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.skin-card:hover .museum-machine {
+
+    border-color:
+        var(--skin-accent);
+
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.65),
+        0 0 14px
+        color-mix(
+            in srgb,
+            var(--skin-accent) 22%,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.museum-display {
+
+    width: 70%;
+    height: 38px;
+
+    padding: 4px 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    background:
+        var(--skin-screen);
+
+    border:
+        2px solid
+        color-mix(
+            in srgb,
+            var(--skin-accent) 45%,
+            #111
+        );
+
+    color:
+        var(--skin-accent);
+
+    text-align: right;
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 8px rgba(0, 0, 0, 0.65);
+}
+
+.museum-expression {
+
+    display: block;
+
+    font-size: 6px;
+
+    opacity: 0.7;
+
+    white-space: nowrap;
+}
+
+.museum-value {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 5px
+        color-mix(
+            in srgb,
+            var(--skin-accent) 70%,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   FAKE CONTROLS
+   ========================================================= */
+
+.museum-controls {
+
+    display: flex;
+
+    gap: 5px;
+
+    margin-top: 9px;
+}
+
+.museum-controls i {
+
+    display: block;
+
+    width: 13px;
+    height: 9px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--skin-accent) 45%,
+            #333
+        );
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--skin-accent) 25%,
+            #111
+        );
+
+    box-shadow:
+        1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   CAPTION
+   ========================================================= */
+
+.skin-card-caption {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-top: 7px;
+}
+
+.skin-card-name {
+
+    color: #ddd;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    max-width: 100%;
+}
+
+.skin-card-year {
+
+    margin-top: 2px;
+
+    color: #666;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   CURRENT SKIN
+   ========================================================= */
+
+.skin-card.active .museum-machine {
+
+    border-color:
+        var(--skin-accent);
+
+    box-shadow:
+        0 0 0 1px #111,
+        0 0 18px
+        color-mix(
+            in srgb,
+            var(--skin-accent) 40%,
+            transparent
+        );
+}
+
+.skin-card.active .skin-card-name {
+
+    color:
+        var(--skin-accent);
+
+}
+
+
+/* =========================================================
+   DIFFERENT MACHINE SHAPES
+   ========================================================= */
+
+
+/* =========================================================
+   TERMINAL
+   ========================================================= */
+
+.skin-0 {
+
+    --skin-accent: #f5d000;
+
+}
+
+.skin-0 .museum-machine {
+
+    background: #111;
+
+    border: 1px solid #444;
+
+    box-shadow:
+        0 7px 12px rgba(0, 0, 0, 0.55);
+
+}
+
+.skin-0 .museum-machine::before {
+
+    content: "TERMINAL // ANGLE CALC";
+
+    position: absolute;
+
+    top: 7px;
+    left: 9px;
+
+    color: #f5d000;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 6px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 4px rgba(245, 208, 0, 0.35);
+}
+
+.skin-0 .museum-display {
+
+    width: 76%;
+
+    margin-top: 12px;
+
+    background: #050505;
+
+    border: 1px solid #555;
+
+    color: #f5d000;
+
+    box-shadow:
+        inset 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.skin-0 .museum-expression {
+    color: #777;
+}
+
+.skin-0 .museum-value {
+
+    color: #f5d000;
+
+    text-shadow:
+        0 0 4px rgba(245, 208, 0, 0.35);
+}
+
+.skin-0 .museum-controls i {
+
+    background: #252525;
+
+    border: 1px solid #444;
+}
+
+
+/* BRAUN */
+
+.skin-1 .museum-machine {
+    border-radius: 18px;
+    box-shadow:
+        0 5px 0 #1d1d1b,
+        0 9px 15px rgba(0,0,0,.5);
+}
+
+.skin-1 .museum-display {
+    border-radius: 2px;
+}
+
+.skin-1 .museum-controls i {
+    border-radius: 50%;
+}
+
+
+/* CASIO */
+
+.skin-2 .museum-machine {
+    border-radius: 4px;
+    justify-content: flex-start;
+    padding-top: 14px;
+}
+
+.skin-2 .museum-display {
+    width: 76%;
+    height: 30px;
+}
+
+
+/* HP */
+
+.skin-3 .museum-machine {
+    border-radius: 3px;
+    border-color: #9f302b;
+    box-shadow: none;
+}
+
+.skin-3 .museum-display {
+    width: 58%;
+    height: 24px;
+
+    border-color: #9f302b;
+}
+
+.skin-3 .museum-controls {
+    gap: 3px;
+}
+
+.skin-3 .museum-controls i {
+    width: 9px;
+    height: 7px;
+}
+
+.skin-3 .museum-value {
+    color: #9f302b;
+}
+
+
+/* SPECTRUM */
+
+.skin-4 .museum-machine {
+    border: 3px solid #ddd;
+}
+
+.skin-4 .museum-machine::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff 0 16%,
+            #ff0000 16% 33%,
+            #ffff00 33% 50%,
+            #00ffff 50% 66%,
+            #0000ff 66% 83%,
+            #fff 83%
+        );
+}
+
+
+/* NASA */
+
+.skin-5 .museum-machine {
+    border:
+        1px solid #777;
+
+    box-shadow:
+        inset 0 0 0 5px #222,
+        inset 0 0 0 7px #555,
+        0 7px 12px rgba(0,0,0,.6);
+}
+
+.skin-5 .museum-display {
+    border-radius: 0;
+}
+
+
+/* SYNTHWAVE */
+
+.skin-6 .museum-machine {
+    border-color: #ff2e92;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1c0028,
+            #07000d
+        );
+
+    box-shadow:
+        inset 0 0 20px rgba(255,46,146,.12);
+}
+
+.skin-6 .museum-display {
+    border-color: #21e1ff;
+
+    color: #21e1ff;
+
+    box-shadow:
+        0 0 10px rgba(33,225,255,.3);
+}
+
+
+/* TEXAS */
+
+.skin-7 .museum-machine {
+    border-radius: 7px 7px 3px 3px;
+}
+
+.skin-7 .museum-controls i {
+    border-radius: 2px;
+}
+
+
+/* STAR TREK */
+
+.skin-8 .museum-machine {
+    border-radius: 20px 3px 20px 3px;
+}
+
+.skin-8 .museum-display {
+    border-radius: 12px 2px 12px 2px;
+}
+
+
+/* EXPANSE */
+
+.skin-9 .museum-machine {
+    border:
+        1px solid #315c5c;
+
+    transform: skew(-1deg);
+}
+
+.skin-9 .museum-controls i {
+    width: 18px;
+    height: 4px;
+}
+
+
+/* GAME BOY */
+
+.skin-10 .museum-machine {
+    border-radius: 10px 10px 25px 25px;
+}
+
+.skin-10 .museum-display {
+    width: 55%;
+    height: 44px;
+    border-radius: 4px;
+}
+
+.skin-10 .museum-controls i {
+    border-radius: 50%;
+}
+
+
+/* WINDOWS 95 */
+
+.skin-11 .museum-machine {
+    border:
+        3px outset #ddd;
+
+    box-shadow:
+        4px 4px 0 #333;
+}
+
+.skin-11 .museum-display {
+    border:
+        2px inset #aaa;
+}
+
+
+/* =========================================================
+   MATRIX GLOW
+   ========================================================= */
+
+.skin-12 .museum-machine {
+
+    box-shadow:
+        inset 0 0 20px rgba(0, 255, 65, 0.08),
+        0 0 12px rgba(0, 255, 65, 0.18);
+}
+
+.skin-12 .museum-display {
+
+    border-color: #00ff41;
+
+    box-shadow:
+        0 0 6px rgba(0, 255, 65, 0.35),
+        inset 0 0 8px rgba(0, 255, 65, 0.08);
+}
+
+.skin-12 .museum-expression {
+
+    color: #00b832;
+
+    text-shadow:
+        0 0 4px rgba(0, 255, 65, 0.35);
+}
+
+.skin-12 .museum-value {
+
+    color: #00ff41;
+
+    text-shadow:
+        0 0 4px rgba(0, 255, 65, 0.65),
+        0 0 9px rgba(0, 255, 65, 0.35);
+}
+
+.skin-12 .museum-controls i {
+
+    background: #003b10;
+
+    border-color: #00ff41;
+
+    box-shadow:
+        0 0 3px rgba(0, 255, 65, 0.35);
+}
+
+
+/* MACINTOSH */
+
+.skin-13 .museum-machine {
+    width: 80%;
+    align-self: center;
+
+    border-radius: 9px 9px 3px 3px;
+
+    background:
+        linear-gradient(
+            #ddd,
+            #aaa
+        );
+}
+
+.skin-13 .museum-display {
+    width: 60%;
+    height: 35px;
+}
+
+
+/* COMMODORE 64 */
+
+.skin-14 .museum-machine {
+    border-radius: 4px;
+
+    background:
+        linear-gradient(
+            #aaa,
+            #777
+        );
+}
+
+.skin-14 .museum-display {
+    border-color: #9f9fca;
+}
+
+
+/* PET */
+
+.skin-15 .museum-machine {
+    border-radius: 3px;
+
+    background: #666;
+}
+
+.skin-15 .museum-display {
+    width: 80%;
+    height: 42px;
+
+    border-radius: 0;
+}
+
+
+/* RETRO 70 */
+
+.skin-16 .museum-machine {
+    border-radius: 2px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5138,
+            #34251b
+        );
+}
+
+.skin-16 .museum-display {
+    width: 55%;
+}
+
+
+/* MS-DOS */
+
+.skin-17 .museum-machine {
+    border: 3px solid #aaa;
+
+    background: #000080;
+
+    box-shadow:
+        inset 0 0 0 3px #111;
+}
+
+.skin-17 .museum-display {
+    border-color: #aaa;
+}
+
+
+/* ORANGE */
+
+.skin-18 .museum-machine {
+    border-radius: 2px;
+
+    background:
+        linear-gradient(
+            #b64c12,
+            #71300d
+        );
+}
+
+.skin-18 .museum-display {
+    border-color: #f5d49a;
+}
+
+
+/* DATABANK */
+
+.skin-19 .museum-machine {
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            #c5c5b8,
+            #85867b
+        );
+}
+
+.skin-19 .museum-display {
+    width: 60%;
+    height: 27px;
+
+    border-radius: 3px;
+}
+
+
+/* AMIGA */
+
+.skin-20 .museum-machine {
+    border:
+        3px solid #eee;
+
+    background:
+        #aaa;
+
+    box-shadow:
+        3px 3px 0 #111;
+}
+
+.skin-20 .museum-display {
+    border-color: #111;
+
+    color: #111;
+
+    background: #eee;
+
+    box-shadow:
+        inset 2px 2px 0 #777,
+        inset -2px -2px 0 #fff;
+}
+
+.skin-20 .museum-controls i {
+    background: #0055aa;
+}
+
+/* =========================================================
+   APOLLO DSKY
+   ========================================================= */
+
+.skin-21 .museum-machine {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #30302e 0%,
+            #222220 50%,
+            #191918 100%
+        );
+
+    border: 2px solid #4b4b47;
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        inset 0 0 12px rgba(0, 0, 0, 0.4),
+        0 7px 12px rgba(0, 0, 0, 0.65);
+
+    overflow: hidden;
+}
+
+/* =========================================================
+   APOLLO HEADER
+   ========================================================= */
+
+.skin-21 .museum-machine::before {
+    content: "APOLLO  GUIDANCE  COMPUTER";
+
+    position: absolute;
+
+    top: 7px;
+    left: 9px;
+
+    color: #d8d8d0;
+
+    font-family: "Courier New", monospace;
+    font-size: 6px;
+    font-weight: bold;
+
+    letter-spacing: 0.9px;
+
+    text-shadow:
+        0 1px 0 #111;
+}
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.skin-21 .museum-display {
+    width: 72%;
+    height: 39px;
+
+    margin-top: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #061006,
+            #091709,
+            #050b05
+        );
+
+    border: 2px solid #565b55;
+
+    color: #63f36b;
+
+    box-shadow:
+        inset 0 0 8px rgba(0, 255, 70, 0.08),
+        0 0 4px rgba(99, 243, 107, 0.12);
+}
+
+/* =========================================================
+   DISPLAY INDICATOR
+   ========================================================= */
+
+.skin-21 .museum-display::before {
+    content: "COMP  ACTY";
+
+    position: absolute;
+
+    top: 35px;
+    left: 13px;
+
+    color: #43d94c;
+
+    font-family: "Courier New", monospace;
+    font-size: 5px;
+    font-weight: bold;
+
+    letter-spacing: 0.6px;
+
+    text-shadow:
+        0 0 3px rgba(67, 217, 76, 0.6);
+}
+
+/* =========================================================
+   DISPLAY TEXT
+   ========================================================= */
+
+.skin-21 .museum-expression {
+    color: #39813e;
+
+    font-size: 5px;
+
+    text-shadow:
+        0 0 3px rgba(67, 217, 76, 0.3);
+}
+
+.skin-21 .museum-value {
+    color: #63f36b;
+
+    font-family:
+        "DSEG14Modern",
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    text-shadow:
+        0 0 4px rgba(99, 243, 107, 0.75),
+        0 0 8px rgba(99, 243, 107, 0.3);
+}
+
+/* =========================================================
+   DSKY KEYS
+   ========================================================= */
+
+.skin-21 .museum-controls {
+    display: flex;
+
+    gap: 4px;
+
+    margin-top: 10px;
+}
+
+.skin-21 .museum-controls i {
+    width: 12px;
+    height: 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #555550,
+            #30302d
+        );
+
+    border: 1px solid #666660;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        1px 1px 0 #111;
+}
+
+/* =========================================================
+   ACTIVE / HOVER
+   ========================================================= */
+
+.skin-card:hover .skin-21 .museum-machine {
+    border-color: #63f36b;
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        inset 0 0 15px rgba(99, 243, 107, 0.05),
+        0 10px 22px rgba(0, 0, 0, 0.7),
+        0 0 12px rgba(99, 243, 107, 0.18);
+}
+
+.skin-21.active .museum-machine {
+    /*border-color: #63f36b;*/
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        inset 0 0 18px rgba(99, 243, 107, 0.08),
+        0 0 0 1px #111,
+        0 0 18px rgba(99, 243, 107, 0.32);
+}
+
+.skin-21.active .skin-card-name {
+    color: #63f36b;
+}
+
+.skin-21 .skin-card-caption::after {
+    content: "BLOCK II  •  DSKY";
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #4f7d52;
+
+    font-size: 6px;
+    letter-spacing: 0.8px;
+}
+
+/* =========================================================
+   ROLAND TR-808 — MUSEUM CARD
+   ========================================================= */
+
+.skin-22 .museum-machine {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #a9a69d 0%,
+            #8f8d85 55%,
+            #77756e 100%
+        );
+
+    border: 2px solid #5e5c56;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -8px 15px rgba(0, 0, 0, 0.18),
+        0 7px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* =========================================================
+   TOP LABEL
+   ========================================================= */
+
+.skin-22 .museum-machine::before {
+    content: "ROLAND   TR-808";
+
+    position: absolute;
+
+    top: 6px;
+    left: 8px;
+
+    color: #252421;
+
+    font-family: "Courier New", monospace;
+    font-size: 6px;
+    font-weight: bold;
+
+    letter-spacing: 0.8px;
+
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.skin-22 .museum-display {
+    width: 72%;
+    height: 34px;
+
+    margin-top: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #241713,
+            #100c0a
+        );
+
+    border: 2px solid #4d4742;
+
+    color: #e35b29;
+
+    box-shadow:
+        inset 0 0 8px rgba(0, 0, 0, 0.9),
+        0 0 5px rgba(227, 91, 41, 0.12);
+}
+
+.skin-22 .museum-expression {
+    color: #80452f;
+    font-size: 5px;
+}
+
+.skin-22 .museum-value {
+    color: #e35b29;
+
+    font-family:
+        "DSEG14Modern",
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+
+    text-shadow:
+        0 0 4px rgba(227, 91, 41, 0.7),
+        0 0 8px rgba(227, 91, 41, 0.25);
+}
+
+/* =========================================================
+   CONTROL STRIP
+   ========================================================= */
+
+.skin-22 .museum-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 3px;
+
+    margin-top: 9px;
+}
+
+/* Small pads / controls */
+
+.skin-22 .museum-controls i {
+    width: 9px;
+    height: 7px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d2cec2,
+            #918e86
+        );
+
+    border: 1px solid #65625c;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        1px 1px 0 #4d4b46;
+}
+
+/* =========================================================
+   LED
+   ========================================================= */
+
+.skin-22 .museum-machine::after {
+    content: "";
+
+    position: absolute;
+
+    right: 8px;
+    top: 8px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #e34e25;
+
+    box-shadow:
+        0 0 4px #e34e25,
+        0 0 8px rgba(227, 78, 37, 0.5);
+}
+
+/* =========================================================
+   DARK MUSEUM ENVIRONMENT
+   ========================================================= */
+
+.skin-22 {
+    background: transparent;
+}
+
+.skin-22 .skin-card-caption {
+    position: relative;
+}
+
+.skin-22 .skin-card-name {
+    color: #d7d3c8;
+}
+
+.skin-22 .skin-card-year {
+    color: #77746c;
+}
+
+/* =========================================================
+   EXTRA TR-808 LABEL
+   ========================================================= */
+
+.skin-22 .skin-card-caption::after {
+    content: "RHYTHM COMPOSER  •  1980";
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #8a4a34;
+
+    font-size: 6px;
+
+    letter-spacing: 0.7px;
+}
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.skin-card:hover .skin-22 .museum-machine {
+    border-color: #b94b27;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -8px 15px rgba(0, 0, 0, 0.2),
+        0 10px 22px rgba(0, 0, 0, 0.8),
+        0 0 14px rgba(227, 91, 41, 0.18);
+}
+
+/* =========================================================
+   ACTIVE
+   ========================================================= */
+
+.skin-22.active .museum-machine {
+    border-color: #d05a2a;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -8px 15px rgba(0, 0, 0, 0.2),
+        0 0 0 1px #111,
+        0 0 18px rgba(227, 91, 41, 0.28);
+}
+
+.skin-22.active .skin-card-name {
+    color: #e35b29;
+}
+
+/* ---------------------------------------------------------
+   MUSEUM CARD
+   --------------------------------------------------------- */
+
+.skin-23 .museum-machine {
+    background:
+        linear-gradient(
+            145deg,
+            #555b59 0%,
+            #363b3a 48%,
+            #252928 100%
+        );
+
+    border: 2px solid #69706d;
+
+    box-shadow:
+        inset 0 0 0 1px #171a19,
+        inset 0 0 15px rgba(0, 0, 0, 0.45),
+        0 7px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* X-WING label */
+
+.skin-23 .museum-machine::before {
+    content: "X-WING  NAV COMPUTER";
+
+    position: absolute;
+    top: 7px;
+    left: 8px;
+
+    color: #d0d3ce;
+
+    font-family: "Courier New", monospace;
+    font-size: 6px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+
+    text-shadow:
+        0 1px 0 #111;
+}
+
+/* display */
+
+.skin-23 .museum-display {
+    width: 73%;
+    height: 39px;
+    margin-top: 13px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #07110f,
+            #0a1714,
+            #050a09
+        );
+
+    border: 2px solid #68716d;
+
+    color: #a9e6c7;
+
+    box-shadow:
+        inset 0 0 8px rgba(0, 0, 0, 0.9),
+        0 0 5px rgba(120, 180, 150, 0.1);
+}
+
+.skin-23 .museum-display::before {
+    content: "NAV  /  R2";
+
+    position: absolute;
+    top: 36px;
+    left: 12px;
+
+    color: #668176;
+
+    font-family: "Courier New", monospace;
+    font-size: 5px;
+    font-weight: bold;
+    letter-spacing: 0.7px;
+}
+
+.skin-23 .museum-expression {
+    color: #657d75;
+    font-size: 5px;
+}
+
+.skin-23 .museum-value {
+    color: #a9e6c7;
+
+    font-family:
+        "XWingDisplay",
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+
+    text-shadow:
+        0 0 4px rgba(110, 230, 180, 0.7),
+        0 0 8px rgba(80, 180, 140, 0.25);
+}
+
+/* little cockpit controls */
+
+.skin-23 .museum-controls {
+    display: flex;
+    gap: 4px;
+    margin-top: 10px;
+}
+
+.skin-23 .museum-controls i {
+    width: 12px;
+    height: 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #555b58,
+            #303533
+        );
+
+    border: 1px solid #707773;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        1px 1px 0 #111;
+}
+
+/* small amber indicator */
+
+.skin-23 .museum-machine::after {
+    content: "●  ●  ●";
+
+    position: absolute;
+    right: 9px;
+    top: 8px;
+
+    color: #b89a3e;
+
+    font-family: "Courier New", monospace;
+    font-size: 5px;
+    letter-spacing: 2px;
+}
+
+/* hover */
+
+.skin-card:hover .skin-23 .museum-machine {
+    border-color: #a9b8ae;
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        inset 0 0 15px rgba(120, 180, 150, 0.06),
+        0 10px 22px rgba(0, 0, 0, 0.75),
+        0 0 12px rgba(140, 180, 160, 0.16);
+}
+
+.skin-23.active .museum-machine {
+    border-color: #a9e6c7;
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        inset 0 0 18px rgba(120, 180, 150, 0.08),
+        0 0 0 1px #111,
+        0 0 18px rgba(140, 200, 170, 0.28);
+}
+
+.skin-23.active .skin-card-name {
+    color: #a9e6c7;
+}
+
+
+/* =========================================================
+   NIXIE TUBE
+   ========================================================= */
+
+.skin-24 .museum-machine {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #45443f 0%,
+            #302f2b 48%,
+            #1d1c19 100%
+        );
+
+    border: 2px solid #69665d;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        inset 0 0 15px rgba(0, 0, 0, 0.55),
+        0 7px 12px rgba(0, 0, 0, 0.75);
+}
+
+/* =========================================================
+   NIXIE LABEL
+   ========================================================= */
+
+.skin-24 .museum-machine::before {
+
+    content: "NIXIE  TUBE  //  SCIENTIFIC";
+
+    position: absolute;
+
+    top: 7px;
+    left: 8px;
+
+    color: #c9c2b3;
+
+    font-family: "Courier New", monospace;
+    font-size: 6px;
+    font-weight: bold;
+
+    letter-spacing: 0.7px;
+
+    text-shadow:
+        0 1px 0 #111;
+}
+
+/* =========================================================
+   NIXIE DISPLAY
+   ========================================================= */
+
+.skin-24 .museum-display {
+
+    width: 68%;
+    height: 40px;
+
+    margin-top: 13px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #211008 0%,
+            #0c0806 65%,
+            #030303 100%
+        );
+
+    border: 2px solid #514b43;
+
+    color: #ff7a18;
+
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.95),
+        0 0 5px rgba(255, 122, 24, 0.12);
+}
+
+.skin-24 .museum-expression {
+
+    color: #87451e;
+
+    font-size: 5px;
+}
+
+.skin-24 .museum-value {
+
+    color: #ff8a24;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    text-shadow:
+        0 0 4px rgba(255, 122, 24, 0.85),
+        0 0 9px rgba(255, 122, 24, 0.35);
+}
+
+/* =========================================================
+   NIXIE CONTROLS
+   ========================================================= */
+
+.skin-24 .museum-controls {
+
+    gap: 4px;
+
+    margin-top: 9px;
+}
+
+.skin-24 .museum-controls i {
+
+    width: 12px;
+    height: 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #55534d,
+            #302f2b
+        );
+
+    border: 1px solid #6b685f;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        1px 1px 0 #111;
+}
+
+/* =========================================================
+   NIXIE INDICATOR
+   ========================================================= */
+
+.skin-24 .museum-machine::after {
+
+    content: "●";
+
+    position: absolute;
+
+    top: 7px;
+    right: 9px;
+
+    color: #ff6a16;
+
+    font-size: 6px;
+
+    text-shadow:
+        0 0 4px rgba(255, 106, 22, 0.8);
+}
+
+/* =========================================================
+   NIXIE HOVER
+   ========================================================= */
+
+.skin-card:hover .skin-24 .museum-machine {
+
+    border-color: #a69b8a;
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        inset 0 0 16px rgba(255, 122, 24, 0.05),
+        0 10px 22px rgba(0, 0, 0, 0.8),
+        0 0 13px rgba(255, 122, 24, 0.16);
+}
+
+.skin-24.active .museum-machine {
+
+    border-color: #ff8a24;
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        inset 0 0 18px rgba(255, 122, 24, 0.07),
+        0 0 0 1px #111,
+        0 0 18px rgba(255, 122, 24, 0.30);
+}
+
+.skin-24.active .skin-card-name {
+
+    color: #ff8a24;
+}
+
+.skin-24 .skin-card-caption::after {
+
+    content: "ELECTRONIC INSTRUMENT  •  1960s";
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #80502f;
+
+    font-size: 6px;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   NASA MISSION CONTROL
+   ========================================================= */
+
+.skin-25 .museum-machine {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #5b5d58 0%,
+            #41433f 48%,
+            #292b28 100%
+        );
+
+    border: 2px solid #858781;
+
+    box-shadow:
+        inset 0 0 0 2px #252623,
+        inset 0 0 12px rgba(0, 0, 0, 0.45),
+        0 7px 12px rgba(0, 0, 0, 0.75);
+}
+
+/* =========================================================
+   NASA LABEL
+   ========================================================= */
+
+.skin-25 .museum-machine::before {
+
+    content: "NASA  //  MISSION CONTROL";
+
+    position: absolute;
+
+    top: 7px;
+    left: 8px;
+
+    color: #d4d5cc;
+
+    font-family: "Courier New", monospace;
+    font-size: 6px;
+    font-weight: bold;
+
+    letter-spacing: 0.7px;
+
+    text-shadow:
+        0 1px 0 #20211f;
+}
+
+/* =========================================================
+   NASA DISPLAY
+   ========================================================= */
+
+.skin-25 .museum-display {
+
+    width: 70%;
+    height: 38px;
+
+    margin-top: 13px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #061006,
+            #0a180a,
+            #040a04
+        );
+
+    border: 2px solid #767b72;
+
+    color: #55d85b;
+
+    box-shadow:
+        inset 0 0 9px rgba(0, 0, 0, 0.9),
+        0 0 4px rgba(85, 216, 91, 0.15);
+}
+
+.skin-25 .museum-expression {
+
+    color: #397a3d;
+
+    font-size: 5px;
+}
+
+.skin-25 .museum-value {
+
+    color: #62e967;
+
+    font-size: 11px;
+
+    text-shadow:
+        0 0 4px rgba(98, 233, 103, 0.75),
+        0 0 8px rgba(98, 233, 103, 0.30);
+}
+
+/* =========================================================
+   NASA CONTROLS
+   ========================================================= */
+
+.skin-25 .museum-controls {
+
+    gap: 3px;
+
+    margin-top: 9px;
+}
+
+.skin-25 .museum-controls i {
+
+    width: 11px;
+    height: 7px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #73766f,
+            #41433f
+        );
+
+    border: 1px solid #969990;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        1px 1px 0 #20211f;
+}
+
+/* =========================================================
+   NASA STATUS LIGHTS
+   ========================================================= */
+
+.skin-25 .museum-machine::after {
+
+    content: "●  ●  ●";
+
+    position: absolute;
+
+    top: 7px;
+    right: 8px;
+
+    color: #d6a532;
+
+    font-family: "Courier New", monospace;
+    font-size: 5px;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 3px rgba(214, 165, 50, 0.45);
+}
+
+/* =========================================================
+   NASA HOVER
+   ========================================================= */
+
+.skin-card:hover .skin-25 .museum-machine {
+
+    border-color: #b1b4aa;
+
+    box-shadow:
+        inset 0 0 0 1px #20211f,
+        inset 0 0 15px rgba(100, 220, 110, 0.05),
+        0 10px 22px rgba(0, 0, 0, 0.8),
+        0 0 12px rgba(100, 220, 110, 0.14);
+}
+
+.skin-25.active .museum-machine {
+
+    border-color: #62e967;
+
+    box-shadow:
+        inset 0 0 0 1px #20211f,
+        inset 0 0 18px rgba(98, 233, 103, 0.07),
+        0 0 0 1px #111,
+        0 0 18px rgba(98, 233, 103, 0.26);
+}
+
+.skin-25.active .skin-card-name {
+
+    color: #62e967;
+}
+
+.skin-25 .skin-card-caption::after {
+
+    content: "FLIGHT OPERATIONS  •  1960s";
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #567356;
+
+    font-size: 6px;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   CYBERPUNK 2099
+   ========================================================= */
+
+.skin-26 .museum-machine {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #170d1e 0%,
+            #0b0710 48%,
+            #030306 100%
+        );
+
+    border: 2px solid #8d2b88;
+
+    box-shadow:
+        inset 0 0 0 1px #120815,
+        inset 0 0 18px rgba(255, 0, 180, 0.08),
+        0 7px 12px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================================
+   CYBERPUNK HEADER
+   ========================================================= */
+
+.skin-26 .museum-machine::before {
+
+    content: "CYBERPUNK // SYSTEM 2099";
+
+    position: absolute;
+
+    top: 7px;
+    left: 8px;
+
+    color: #ff42cf;
+
+    font-family: "Courier New", monospace;
+    font-size: 6px;
+    font-weight: bold;
+
+    letter-spacing: 0.7px;
+
+    text-shadow:
+        0 0 4px rgba(255, 66, 207, 0.6);
+}
+
+/* =========================================================
+   CYBERPUNK DISPLAY
+   ========================================================= */
+
+.skin-26 .museum-display {
+
+    width: 70%;
+    height: 39px;
+
+    margin-top: 13px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #06050b,
+            #0b0610,
+            #030306
+        );
+
+    border: 2px solid #21dfff;
+
+    color: #21e1ff;
+
+    box-shadow:
+        inset 0 0 9px rgba(0, 0, 0, 0.9),
+        0 0 7px rgba(33, 225, 255, 0.28);
+}
+
+.skin-26 .museum-expression {
+
+    color: #72508c;
+
+    font-size: 5px;
+}
+
+.skin-26 .museum-value {
+
+    color: #21e1ff;
+
+    font-size: 11px;
+
+    text-shadow:
+        0 0 4px rgba(33, 225, 255, 0.9),
+        0 0 9px rgba(255, 46, 146, 0.35);
+}
+
+/* =========================================================
+   CYBERPUNK CONTROLS
+   ========================================================= */
+
+.skin-26 .museum-controls {
+
+    gap: 4px;
+
+    margin-top: 9px;
+}
+
+.skin-26 .museum-controls i {
+
+    width: 12px;
+    height: 7px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2c2633,
+            #110d16
+        );
+
+    border: 1px solid #74236f;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 0 3px rgba(255, 46, 146, 0.18);
+}
+
+/* =========================================================
+   CYBERPUNK STATUS LIGHT
+   ========================================================= */
+
+.skin-26 .museum-machine::after {
+
+    content: "◆";
+
+    position: absolute;
+
+    top: 7px;
+    right: 9px;
+
+    color: #21e1ff;
+
+    font-size: 6px;
+
+    text-shadow:
+        0 0 5px rgba(33, 225, 255, 0.9);
+}
+
+/* =========================================================
+   CYBERPUNK HOVER
+   ========================================================= */
+
+.skin-card:hover .skin-26 .museum-machine {
+
+    border-color: #ff42cf;
+
+    box-shadow:
+        inset 0 0 0 1px #120815,
+        inset 0 0 18px rgba(255, 46, 146, 0.10),
+        0 10px 22px rgba(0, 0, 0, 0.85),
+        0 0 14px rgba(255, 46, 146, 0.28),
+        0 0 24px rgba(33, 225, 255, 0.12);
+}
+
+.skin-26.active .museum-machine {
+
+    border-color: #21e1ff;
+
+    box-shadow:
+        inset 0 0 0 1px #120815,
+        inset 0 0 18px rgba(255, 46, 146, 0.08),
+        0 0 0 1px #111,
+        0 0 18px rgba(33, 225, 255, 0.30),
+        0 0 28px rgba(255, 46, 146, 0.16);
+}
+
+.skin-26.active .skin-card-name {
+
+    color: #21e1ff;
+}
+
+.skin-26 .skin-card-caption::after {
+
+    content: "NEON COMPUTATION  •  2099";
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #9c3d91;
+
+    font-size: 6px;
+
+    letter-spacing: 0.7px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .skin-list {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .skin-list {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+        padding: 10px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .skin-list {
+        grid-template-columns: 1fr;
+    }
+
+}

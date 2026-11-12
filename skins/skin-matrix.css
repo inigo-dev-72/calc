@@ -1,0 +1,859 @@
+/* =========================================================
+   CALCULATOR - MATRIX
+   ========================================================= */
+
+:root {
+
+    --matrix-black: #020603;
+    --matrix-bg: #061008;
+    --matrix-panel: #08150a;
+
+    --matrix-green: #00ff41;
+    --matrix-bright: #39ff70;
+    --matrix-dark: #0b7a2a;
+    --matrix-dim: #1a8f3a;
+
+    --matrix-border: #164d24;
+    --matrix-border-bright: #27c957;
+
+    --matrix-red: #ff3333;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    padding: 20px 12px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0, 255, 65, 0.025) 0,
+            rgba(0, 255, 65, 0.025) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        radial-gradient(
+            ellipse at center,
+            #0a1a0d 0%,
+            #020603 70%,
+            #000000 100%
+        );
+
+    color: var(--matrix-green);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+}
+
+
+/* =========================================================
+   CALCULATOR
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    padding: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b160d,
+            #020703
+        );
+
+    border: 1px solid var(--matrix-border-bright);
+
+    box-shadow:
+        0 0 4px rgba(0, 255, 65, .35),
+        0 0 18px rgba(0, 255, 65, .10),
+        inset 0 0 20px rgba(0, 255, 65, .035);
+}
+
+
+/* =========================================================
+   TERMINAL HEADER
+   ========================================================= */
+
+.calculator::before {
+
+    content: "MATRIX_CALCULATOR // SYSTEM READY";
+
+    height: 22px;
+
+    padding: 3px 6px;
+
+    margin-bottom: 7px;
+
+    color: var(--matrix-bright);
+
+    background: #030903;
+
+    border-bottom: 1px solid var(--matrix-border);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    line-height: 15px;
+
+    letter-spacing: .4px;
+
+    text-shadow:
+        0 0 4px rgba(0, 255, 65, .7);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 96px;
+
+    padding: 9px 8px;
+
+    margin-bottom: 7px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0, 255, 65, .025) 0,
+            rgba(0, 255, 65, .025) 1px,
+            transparent 1px,
+            transparent 3px
+        ),
+        #010401;
+
+    border: 1px solid var(--matrix-dark);
+
+    box-shadow:
+        inset 0 0 12px rgba(0, 255, 65, .08),
+        0 0 5px rgba(0, 255, 65, .12);
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 20px;
+
+    color: var(--matrix-dim);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 3px rgba(0, 255, 65, .4);
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.value {
+
+    min-height: 34px;
+
+    color: var(--matrix-bright);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 4px rgba(0, 255, 65, .8),
+        0 0 12px rgba(0, 255, 65, .35);
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color: var(--matrix-dark);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 3px rgba(0, 255, 65, .35);
+}
+
+
+/* =========================================================
+   ANGLE MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 3px;
+
+    margin-bottom: 6px;
+}
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 25px;
+
+    padding: 2px 5px;
+
+    color: var(--matrix-green);
+
+    background: #061108;
+
+    border: 1px solid var(--matrix-border);
+
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 4px rgba(0, 255, 65, .4);
+}
+
+.mode button:hover {
+
+    color: #ffffff;
+
+    border-color: var(--matrix-green);
+
+    box-shadow:
+        0 0 5px rgba(0, 255, 65, .2);
+}
+
+.mode button:active {
+
+    background: #0b2610;
+}
+
+.mode button.active {
+
+    color: #000000;
+
+    background: var(--matrix-green);
+
+    border-color: var(--matrix-green);
+
+    box-shadow:
+        0 0 7px rgba(0, 255, 65, .5);
+
+    text-shadow: none;
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+
+    gap: 3px;
+}
+
+
+/* =========================================================
+   ALL BUTTONS
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    padding: 0;
+
+    color: var(--matrix-green);
+
+    background:
+        linear-gradient(
+            180deg,
+            #0a170c,
+            #040b05
+        );
+
+    border: 1px solid var(--matrix-border);
+
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 4px rgba(0, 255, 65, .5);
+
+    box-shadow:
+        inset 0 0 5px rgba(0, 255, 65, .025);
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.buttons button:hover {
+
+    color: var(--matrix-bright);
+
+    background:
+        linear-gradient(
+            180deg,
+            #0d2411,
+            #061108
+        );
+
+    border-color: var(--matrix-dark);
+
+    box-shadow:
+        0 0 5px rgba(0, 255, 65, .15),
+        inset 0 0 8px rgba(0, 255, 65, .05);
+}
+
+
+/* =========================================================
+   ACTIVE
+   ========================================================= */
+
+.buttons button:active {
+
+    color: #000000;
+
+    background: var(--matrix-green);
+
+    border-color: var(--matrix-green);
+
+    text-shadow: none;
+
+    box-shadow:
+        0 0 8px rgba(0, 255, 65, .6);
+}
+
+
+/* =========================================================
+   COMPACT BUTTONS
+   ========================================================= */
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBERS
+   ========================================================= */
+
+.buttons button.number {
+
+    color: var(--matrix-bright);
+
+    background:
+        linear-gradient(
+            180deg,
+            #09160b,
+            #030803
+        );
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FUNCTIONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color: var(--matrix-green);
+
+    background:
+        linear-gradient(
+            180deg,
+            #071c0b,
+            #041007
+        );
+
+    font-size: 11px;
+
+    text-shadow:
+        0 0 5px rgba(0, 255, 65, .65);
+}
+
+
+/* =========================================================
+   OPERATORS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color: var(--matrix-green);
+
+    background:
+        linear-gradient(
+            180deg,
+            #0a1e0d,
+            #040b05
+        );
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+.buttons button.memory {
+
+    color: var(--matrix-dim);
+
+    background:
+        linear-gradient(
+            180deg,
+            #06150a,
+            #030a04
+        );
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   AC / DANGER
+   ========================================================= */
+
+.buttons button.danger {
+
+    color: var(--matrix-red);
+
+    background:
+        linear-gradient(
+            180deg,
+            #160606,
+            #090303
+        );
+
+    border-color: #4d1616;
+
+    text-shadow:
+        0 0 4px rgba(255, 51, 51, .45);
+}
+
+.buttons button.danger:hover {
+
+    color: #ff6666;
+
+    border-color: #8f2222;
+
+    box-shadow:
+        0 0 6px rgba(255, 51, 51, .15);
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color: #000000;
+
+    background:
+        linear-gradient(
+            180deg,
+            #39ff70,
+            #00c832
+        );
+
+    border-color: var(--matrix-green);
+
+    font-size: 15px;
+
+    text-shadow: none;
+
+    box-shadow:
+        0 0 8px rgba(0, 255, 65, .35);
+}
+
+.buttons button.equals:hover {
+
+    color: #000000;
+
+    background:
+        linear-gradient(
+            180deg,
+            #61ff8d,
+            #00e63b
+        );
+
+    box-shadow:
+        0 0 12px rgba(0, 255, 65, .55);
+}
+
+.buttons button.equals:active {
+
+    background: #00a928;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 65, .75);
+}
+
+
+/* =========================================================
+   ZERO
+   ========================================================= */
+
+.buttons button.wide {
+    grid-column: span 2;
+}
+
+
+/* =========================================================
+   DMS BUTTON
+   ========================================================= */
+
+#dmsButton {
+
+    color: var(--matrix-green);
+
+    background:
+        linear-gradient(
+            180deg,
+            #071c0b,
+            #040d05
+        );
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 7px;
+
+    padding: 6px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #071108,
+            #030803
+        );
+
+    border: 1px solid var(--matrix-border);
+
+    box-shadow:
+        inset 0 0 10px rgba(0, 255, 65, .025);
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 4px;
+
+    color: var(--matrix-dark);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 3px rgba(0, 255, 65, .3);
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+
+    gap: 3px;
+}
+
+.memory-button {
+
+    height: 27px;
+
+    padding: 0;
+
+    color: var(--matrix-green);
+
+    background: #040c05;
+
+    border: 1px solid var(--matrix-border);
+
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 3px rgba(0, 255, 65, .4);
+}
+
+.memory-button:hover {
+
+    color: var(--matrix-bright);
+
+    border-color: var(--matrix-dark);
+}
+
+.memory-button:active {
+
+    color: #000000;
+
+    background: var(--matrix-green);
+
+    border-color: var(--matrix-green);
+
+    text-shadow: none;
+}
+
+.memory-button.active {
+
+    color: #000000;
+
+    background: var(--matrix-green);
+
+    border-color: var(--matrix-green);
+
+    box-shadow:
+        0 0 6px rgba(0, 255, 65, .45);
+
+    text-shadow: none;
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 3px;
+
+    margin-top: 3px;
+}
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color: var(--matrix-dim);
+
+    background: #010401;
+
+    border: 1px solid #10371a;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+
+    text-shadow:
+        0 0 3px rgba(0, 255, 65, .25);
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 6px;
+
+    padding: 4px 2px;
+
+    color: #176b2d;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 10px;
+
+        align-items: flex-start;
+    }
+
+    .calculator {
+
+        width: 100%;
+
+        padding: 6px;
+    }
+
+    .buttons {
+
+        gap: 3px;
+    }
+
+    .buttons button {
+
+        height: 42px;
+
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .calculator::before {
+        font-size: 8px;
+    }
+
+    .buttons {
+        gap: 2px;
+    }
+
+    .buttons button {
+
+        height: 39px;
+
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 2px;
+    }
+
+    .memory-button {
+
+        height: 25px;
+
+        font-size: 8px;
+    }
+
+    .memory-value {
+        font-size: 7px;
+    }
+
+    .help {
+        font-size: 7px;
+    }
+}

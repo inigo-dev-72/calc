@@ -1,0 +1,637 @@
+/*
+ * ROLAND TR-808
+ * Rhythm Composer
+ * Inspired by the original 1980 Roland TR-808
+ */
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #494844 0%,
+            #272622 55%,
+            #11100f 100%
+        );
+
+    color: #e2dfd3;
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+
+/* =========================================================
+   MACHINE
+   ========================================================= */
+
+.calculator {
+
+    width: 420px;
+
+    padding: 13px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #aaa79e 0%,
+            #9b9990 100%
+        );
+
+    border: 2px solid #6d6b65;
+
+    box-shadow:
+        inset 0 1px 0 #d1cec4,
+        inset 0 -2px 0 #77756e,
+        0 14px 45px rgba(0, 0, 0, 0.75);
+}
+
+
+/* =========================================================
+   ROLAND HEADER
+   ========================================================= */
+
+.calculator::before {
+
+    content: "ROLAND   TR-808";
+
+    margin: 0 5px 1px;
+
+    color: #252421;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    line-height: 17px;
+
+    text-align: left;
+}
+
+.calculator::after {
+
+    content: "RHYTHM COMPOSER   //   COMPUTER CONTROLLED";
+
+    margin: 0 5px 7px;
+
+    color: #55534d;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 7px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    line-height: 10px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    margin-bottom: 8px;
+
+    padding: 9px;
+
+    min-height: 91px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #292824 0%,
+            #181714 100%
+        );
+
+    border: 2px solid #4d4b45;
+
+    box-shadow:
+        inset 0 0 0 1px #090908,
+        inset 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+
+/*
+ * Pattern label
+ */
+
+.display::before {
+
+    content: "PATTERN  01";
+
+    position: absolute;
+
+    top: 4px;
+    left: 7px;
+
+    color: #d85a2a;
+
+    font-size: 7px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 4px rgba(216, 90, 42, 0.45);
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    height: 24px;
+
+    padding-top: 3px;
+
+    color: #8c4d32;
+
+    text-align: right;
+
+    font-size: 11px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+}
+
+
+/*
+ * The TR-808 skin hides the scrollbar while
+ * retaining horizontal scrolling.
+ */
+
+#expression,
+#value {
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    scrollbar-width: none;
+}
+
+#expression::-webkit-scrollbar,
+#value::-webkit-scrollbar {
+
+    display: none;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+@font-face {
+    font-family: "DSEG14Modern";
+    src: url("../fonts/DSEG14Modern-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.value {
+
+    min-height: 37px;
+
+    color: #e35b29;
+
+    text-align: right;
+
+    font-family:
+        "DSEG14Modern",
+        "Courier New",
+        monospace;
+
+    font-size: 25px;
+
+    text-shadow:
+        0 0 4px rgba(227, 91, 41, 0.75),
+        0 0 9px rgba(227, 91, 41, 0.25);
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 15px;
+
+    color: #804a33;
+
+    text-align: right;
+
+    font-size: 10px;
+
+    /*overflow: hidden;*/
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CONTROL PANEL
+   ========================================================= */
+
+.buttons {
+
+    gap: 5px;
+
+    padding: 7px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #383733,
+            #292824
+        );
+
+    border: 2px solid #55534c;
+
+    box-shadow:
+        inset 0 0 0 1px #111;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+
+    height: 41px;
+
+    position: relative;
+
+    border: 1px solid #171716;
+
+    background:
+        linear-gradient(
+            180deg,
+            #57554e 0%,
+            #3c3b36 100%
+        );
+
+    color: #e0ddd2;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.13),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        1px 2px 0 #111;
+}
+
+button:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #68665f,
+            #47453f
+        );
+}
+
+button:active {
+
+    transform: translateY(1px);
+
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   RHYTHM FUNCTION BUTTONS
+   ========================================================= */
+
+.function {
+
+    color: #f0b36c;
+
+    background:
+        linear-gradient(
+            180deg,
+            #55524a,
+            #383631
+        );
+}
+
+.function:hover {
+    color: #ffc788;
+}
+
+
+/* =========================================================
+   NUMBERS
+   ========================================================= */
+
+.number {
+
+    color: #eeeae0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #5b5952,
+            #414039
+        );
+}
+
+
+/* =========================================================
+   OPERATORS
+   ========================================================= */
+
+.operator {
+    color: #f0a05e;
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+.memory {
+    color: #a9c98c;
+}
+
+
+/* =========================================================
+   CLEAR
+   ========================================================= */
+
+.danger {
+
+    color: #f0714e;
+
+    background:
+        linear-gradient(
+            180deg,
+            #55413b,
+            #362a27
+        );
+}
+
+
+/* =========================================================
+   EQUALS / START
+   ========================================================= */
+
+.equals {
+
+    background:
+        linear-gradient(
+            180deg,
+            #c64c27 0%,
+            #9f351b 100%
+        );
+
+    border-color: #692717;
+
+    color: #fff0df;
+
+    font-size: 11px;
+
+    text-shadow:
+        0 1px 0 #571c0c;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+        1px 2px 0 #21100b;
+}
+
+.equals:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #d95b32,
+            #b43d20
+        );
+}
+
+
+/* =========================================================
+   MAKE SOME CONTROLS LOOK LIKE 808 KNOBS
+   ========================================================= */
+
+/*
+ * Trigonometry controls
+ */
+
+.buttons .danger {
+
+    border-radius: 50%;
+
+    width: 39px;
+    height: 39px;
+
+    justify-self: center;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #69675f,
+            #393832 65%,
+            #24231f 100%
+        );
+
+    border: 2px solid #1c1b19;
+
+    box-shadow:
+        inset 2px 2px 3px rgba(255, 255, 255, 0.12),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.55),
+        1px 2px 0 #111;
+}
+
+
+/* =========================================================
+   STEP-LIKE NUMBER BUTTONS
+   ========================================================= */
+
+.buttons .number {
+    border-radius: 2px;
+}
+
+
+/*
+ * Accent some rhythm-like controls
+ */
+
+.buttons .number:nth-child(11),
+.buttons .number:nth-child(12),
+.buttons .number:nth-child(13) {
+
+    border-top: 3px solid #b54b28;
+}
+
+
+/* =========================================================
+   MEMORY SECTION
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 8px;
+
+    padding: 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #34332f,
+            #292824
+        );
+
+    border: 2px solid #55534d;
+
+    border-top-color: #6a6861;
+}
+
+.memory-title {
+
+    color: #d05a2a;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 5px;
+}
+
+.memory-buttons {
+
+    gap: 4px;
+}
+
+.memory-button {
+
+    height: 30px;
+
+    font-size: 9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #4d4b45,
+            #302f2b
+        );
+}
+
+.memory-button.active {
+
+    color: #fff0df;
+
+    background:
+        linear-gradient(
+            180deg,
+            #c64c27,
+            #96341b
+        );
+
+    border-color: #702719;
+
+    box-shadow:
+        0 0 6px rgba(198, 76, 39, 0.35);
+}
+
+.memory-values {
+
+    gap: 4px;
+
+    margin-top: 4px;
+}
+
+.memory-value {
+
+    text-align: center;
+
+    font-size: 8px;
+
+    color: #77746c;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 8px;
+
+    padding: 5px 2px;
+
+    color: #5e5b54;
+
+    font-size: 9px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 460px) {
+
+    .calculator {
+
+        width: 100%;
+
+        max-width: 420px;
+
+        margin: 10px;
+    }
+}

@@ -1,0 +1,721 @@
+/* =========================================================
+   CALCULATOR - STAR TREK / LCARS INSPIRED
+   ========================================================= */
+
+:root {
+
+    --lcars-background: #090a12;
+    --lcars-background-2: #111322;
+
+    --lcars-panel: #171929;
+    --lcars-panel-light: #20233a;
+
+    --lcars-orange: #f5a623;
+    --lcars-orange-light: #ffbd45;
+
+    --lcars-yellow: #f5d76e;
+
+    --lcars-purple: #9b82d7;
+    --lcars-purple-light: #b7a4eb;
+
+    --lcars-blue: #7189c9;
+    --lcars-blue-light: #8ea5e0;
+
+    --lcars-red: #d96b73;
+
+    --lcars-text: #ece9f4;
+    --lcars-muted: #85899f;
+
+    --lcars-border: #30334b;
+
+    --lcars-radius: 8px;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    padding: 20px 12px;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(113, 137, 201, .10),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #07080e,
+            #111322
+        );
+
+    color: var(--lcars-text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================================================
+   CALCULATOR BODY
+   ========================================================= */
+
+.calculator {
+
+    width: min(380px, 100%);
+
+    padding: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a1c2d,
+            #10121e
+        );
+
+    border:
+        1px solid #30334a;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .55),
+        inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+
+/* =========================================================
+   DECORATIVE PANEL LINE
+   ========================================================= */
+
+.calculator::before {
+
+    content: "";
+
+    height: 5px;
+
+    margin-bottom: 9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--lcars-orange) 0 18%,
+            transparent 18% 20%,
+            var(--lcars-purple) 20% 68%,
+            transparent 68% 70%,
+            var(--lcars-orange) 70% 100%
+        );
+
+    border-radius: 5px;
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+
+    min-height: 95px;
+
+    padding: 10px 13px;
+
+    margin-bottom: 9px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background: #090b12;
+
+    border:
+        1px solid #3c4059;
+
+    border-radius: 7px;
+
+    box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, .65);
+}
+
+
+/* =========================================================
+   EXPRESSION
+   ========================================================= */
+
+.expression {
+
+    min-height: 20px;
+
+    color: var(--lcars-orange);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.value {
+
+    min-height: 34px;
+
+    color: var(--lcars-yellow);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DECIMAL VALUE
+   ========================================================= */
+
+.decimal-value {
+
+    min-height: 16px;
+
+    margin-top: 2px;
+
+    color: var(--lcars-muted);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MODE
+   ========================================================= */
+
+.mode {
+
+    gap: 5px;
+
+    margin-bottom: 7px;
+}
+
+
+.mode button {
+
+    flex: 1;
+
+    min-height: 27px;
+
+    padding: 3px 7px;
+
+    color: var(--lcars-purple-light);
+
+    background: #20233a;
+
+    border:
+        1px solid #353950;
+
+    border-radius: 4px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+.mode button.active {
+
+    color: #17121f;
+
+    background: var(--lcars-orange);
+
+    border-color: var(--lcars-orange-light);
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 5px;
+}
+
+
+/* =========================================================
+   ALL BUTTONS
+   ========================================================= */
+
+.buttons button {
+
+    height: 44px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 6px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: var(--lcars-text);
+
+    background: #30344b;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .06);
+
+    transition:
+        background .08s ease,
+        transform .05s ease;
+}
+
+
+.buttons button:hover {
+    background: #3a3f59;
+}
+
+
+.buttons button:active {
+    transform: translateY(1px);
+}
+
+
+.buttons button.compact {
+
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBER BUTTONS
+   ========================================================= */
+
+.buttons button.number {
+
+    color: #171922;
+
+    background: var(--lcars-blue-light);
+
+    border-radius: 6px;
+}
+
+
+.buttons button.number:hover {
+    background: #a2b7eb;
+}
+
+
+/* =========================================================
+   FUNCTION BUTTONS
+   ========================================================= */
+
+.buttons button.function {
+
+    color: #171321;
+
+    background: var(--lcars-purple);
+
+    border-radius: 10px 4px 4px 10px;
+}
+
+
+.buttons button.function:hover {
+    background: var(--lcars-purple-light);
+}
+
+
+/* =========================================================
+   OPERATOR BUTTONS
+   ========================================================= */
+
+.buttons button.operator {
+
+    color: #1a1510;
+
+    background: var(--lcars-orange);
+
+    border-radius: 4px 10px 10px 4px;
+}
+
+
+.buttons button.operator:hover {
+    background: var(--lcars-orange-light);
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.buttons button.memory {
+
+    color: #171321;
+
+    background: #8173a8;
+
+    border-radius: 7px;
+}
+
+
+.buttons button.memory:hover {
+    background: #9788c1;
+}
+
+
+/* =========================================================
+   DANGER / AC
+   ========================================================= */
+
+.buttons button.danger {
+
+    color: #fff;
+
+    background: var(--lcars-red);
+
+    border-radius: 10px 4px 4px 10px;
+}
+
+
+.buttons button.danger:hover {
+    background: #e77b82;
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+
+    color: #17120c;
+
+    background: var(--lcars-yellow);
+
+    border-radius: 4px 14px 14px 4px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+
+
+.buttons button.equals:hover {
+    background: #ffe58b;
+}
+
+
+/* =========================================================
+   DMS BUTTON
+   ========================================================= */
+
+#dmsButton {
+
+    color: #17120c;
+
+    background: var(--lcars-yellow);
+
+    border-radius: 8px;
+}
+
+
+#dmsButton:hover {
+    background: #ffe58b;
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+
+    margin-top: 9px;
+
+    padding: 8px;
+
+    background: #171a29;
+
+    border:
+        1px solid #30334a;
+
+    border-radius: 7px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .025);
+}
+
+
+/* =========================================================
+   MEMORY TITLE
+   ========================================================= */
+
+.memory-title {
+
+    margin-bottom: 5px;
+
+    color: var(--lcars-orange);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MEMORY BUTTONS
+   ========================================================= */
+
+.memory-buttons {
+    gap: 4px;
+}
+
+
+.memory-button {
+
+    height: 27px;
+
+    padding: 0;
+
+    color: #171321;
+
+    background: #6e79a9;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+.memory-button:hover {
+    background: #8490c3;
+}
+
+
+.memory-button.active {
+
+    color: #17120c;
+
+    background: var(--lcars-orange);
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-values {
+
+    gap: 4px;
+
+    margin-top: 4px;
+}
+
+
+.memory-value {
+
+    padding: 3px 1px;
+
+    color: var(--lcars-muted);
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 8px;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+
+    background: #10121d;
+
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+
+    margin-top: 8px;
+
+    padding: 5px 2px;
+
+    color: var(--lcars-muted);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 10px;
+
+        align-items: flex-start;
+    }
+
+    .calculator {
+
+        width: 100%;
+
+        padding: 10px;
+    }
+
+    .display {
+        min-height: 90px;
+    }
+
+    .value {
+        font-size: 23px;
+    }
+
+    .buttons {
+        gap: 4px;
+    }
+
+    .buttons button {
+        height: 42px;
+        font-size: 12px;
+    }
+
+    .memory-panel {
+        padding: 7px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .calculator {
+        padding: 8px;
+    }
+
+    .display {
+
+        min-height: 84px;
+
+        padding: 8px 10px;
+    }
+
+    .value {
+        font-size: 21px;
+    }
+
+    .buttons {
+        gap: 4px;
+    }
+
+    .buttons button {
+
+        height: 39px;
+
+        font-size: 11px;
+    }
+
+    .memory-buttons,
+    .memory-values {
+        gap: 3px;
+    }
+
+    .memory-button {
+
+        height: 25px;
+
+        font-size: 8px;
+    }
+
+    .memory-value {
+        font-size: 7px;
+    }
+
+    .help {
+        font-size: 8px;
+    }
+}

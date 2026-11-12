@@ -1,0 +1,556 @@
+/* =========================================================
+   CALCULATOR CASIO DATABANK
+   Inspired by Casio DBC-610 / Databank watches
+   ========================================================= */
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    background:
+        linear-gradient(
+            135deg,
+            #202326 0%,
+            #111315 50%,
+            #292c2f 100%
+        );
+
+    font-family: "Courier New", monospace;
+
+    color: #111;
+}
+
+
+/* =========================================================
+   CALCULATOR BODY
+   ========================================================= */
+
+.calculator {
+    width: 390px;
+    max-width: 95vw;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c9c9c5 0%,
+            #9d9e9b 45%,
+            #737572 100%
+        );
+
+    border: 2px solid #4b4d4b;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.65),
+        inset 1px 1px 0 #eeeeeb,
+        inset -2px -2px 0 #555754;
+}
+
+.calculator::before {
+    content: "CASIO  DBC-610";
+
+    margin: 0 4px 9px;
+
+    color: #252725;
+
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+    line-height: 16px;
+
+    text-align: left;
+
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   DISPLAY
+   ========================================================= */
+
+.display {
+    min-height: 100px;
+
+    padding: 9px 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #7e8177 0%,
+            #a4a79a 100%
+        );
+
+    border: 4px solid #252725;
+
+    border-radius: 5px;
+
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.55),
+        0 1px 0 #deded9;
+
+    color: #172018;
+}
+
+
+/* =========================================================
+   LCD
+   ========================================================= */
+
+.expression {
+    min-height: 21px;
+
+    color: #394238;
+
+    font-size: 11px;
+
+    text-align: right;
+}
+
+
+.value {
+    min-height: 43px;
+
+    color: #172019;
+
+    font-size: 29px;
+
+    line-height: 43px;
+
+    text-align: right;
+
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+
+.decimal-value {
+    min-height: 16px;
+
+    color: #4b5149;
+
+    font-size: 10px;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   OLD MODE AREA
+   ========================================================= */
+
+.mode {
+    gap: 5px;
+
+    margin: 9px 0;
+}
+
+.mode button {
+    flex: 1;
+
+    padding: 5px;
+
+    border: 1px solid #3e403e;
+
+    border-radius: 3px;
+
+    background: #555754;
+
+    color: #e4e4df;
+
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    font-weight: bold;
+
+    box-shadow:
+        inset 1px 1px 0 #777a76,
+        inset -1px -1px 0 #303230;
+}
+
+.mode button.active {
+    background: #242624;
+
+    color: #d7d9cf;
+}
+
+
+/* =========================================================
+   BUTTON GRID
+   ========================================================= */
+
+.buttons {
+    gap: 6px;
+
+    margin-top: 11px;
+}
+
+
+/* =========================================================
+   BUTTON BASE
+   ========================================================= */
+
+.buttons button {
+    min-height: 46px;
+
+    border: 2px solid #343634;
+
+    border-radius: 5px;
+
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    font-weight: bold;
+
+    box-shadow:
+        0 2px 0 #282a28,
+        inset 1px 1px 0 rgba(255, 255, 255, 0.45),
+        inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.05s,
+        box-shadow 0.05s;
+}
+
+.buttons button:active {
+    transform: translateY(2px);
+
+    box-shadow:
+        0 0 0 #282a28,
+        inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.buttons button.compact {
+    height: 30px;
+
+    min-height: 30px;
+
+    padding: 2px 7px;
+}
+
+
+/* =========================================================
+   NUMBER KEYS
+   ========================================================= */
+
+.buttons button.number {
+    background:
+        linear-gradient(
+            145deg,
+            #e1e1dc,
+            #b8b9b5
+        );
+
+    color: #171918;
+}
+
+.buttons button.number:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #eeeeea,
+            #c4c5c0
+        );
+}
+
+
+/* =========================================================
+   FUNCTION KEYS
+   ========================================================= */
+
+.buttons button.function {
+    background:
+        linear-gradient(
+            145deg,
+            #3e413e,
+            #242624
+        );
+
+    color: #d8d9d2;
+
+    font-size: 13px;
+}
+
+.buttons button.function:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #4b4e4a,
+            #2b2e2b
+        );
+}
+
+
+/* =========================================================
+   OPERATORS
+   ========================================================= */
+
+.buttons button.operator {
+    background:
+        linear-gradient(
+            145deg,
+            #777a76,
+            #515450
+        );
+
+    color: #f0f0eb;
+}
+
+.buttons button.operator:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #858883,
+            #5b5e5a
+        );
+}
+
+
+/* =========================================================
+   MEMORY
+   ========================================================= */
+
+.buttons button.memory {
+    background:
+        linear-gradient(
+            145deg,
+            #292b29,
+            #151716
+        );
+
+    color: #c5c8bf;
+}
+
+.buttons button.memory:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #363936,
+            #1d1f1d
+        );
+}
+
+
+/* =========================================================
+   AC
+   ========================================================= */
+
+.buttons button.danger {
+    background:
+        linear-gradient(
+            145deg,
+            #555854,
+            #303230
+        );
+
+    color: #e8e8e2;
+
+    border-color: #272927;
+}
+
+.buttons button.danger:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #636662,
+            #383a38
+        );
+}
+
+
+/* =========================================================
+   EQUALS
+   ========================================================= */
+
+.buttons button.equals {
+    background:
+        linear-gradient(
+            145deg,
+            #222522,
+            #0f100f
+        );
+
+    color: #f1f1eb;
+
+    border-color: #111211;
+
+    font-size: 19px;
+
+    box-shadow:
+        0 2px 0 #090a09,
+        inset 1px 1px 0 #4a4d49,
+        inset -1px -1px 0 #050605;
+}
+
+.buttons button.equals:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #303330,
+            #151715
+        );
+}
+
+
+/* =========================================================
+   MEMORY PANEL
+   ========================================================= */
+
+.memory-panel {
+    margin-top: 13px;
+
+    padding: 9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #5b5e5a,
+            #3e413e
+        );
+
+    border: 2px solid #303230;
+
+    border-radius: 5px;
+
+    box-shadow:
+        inset 1px 1px 0 #858883,
+        inset -1px -1px 0 #292b29;
+}
+
+
+.memory-title {
+    margin-bottom: 6px;
+
+    color: #d7d9d1;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+}
+
+
+.memory-buttons,
+.memory-values {
+    gap: 4px;
+}
+
+
+.memory-button {
+    padding: 5px 2px;
+
+    border: 1px solid #252725;
+
+    border-radius: 3px;
+
+    background: #181a18;
+
+    color: #c6c9c0;
+
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    font-weight: bold;
+
+    box-shadow:
+        inset 1px 1px 0 #454844,
+        inset -1px -1px 0 #0c0d0c;
+}
+
+
+.memory-button:hover {
+    background: #272a27;
+}
+
+
+.memory-button.active {
+    background: #aeb1a7;
+
+    color: #1a1c1a;
+
+    box-shadow:
+        inset 1px 1px 0 #dfe1d9,
+        inset -1px -1px 0 #747770;
+}
+
+
+/* =========================================================
+   MEMORY VALUES
+   ========================================================= */
+
+.memory-value {
+    padding: 4px 2px;
+
+    color: #c2c5bc;
+
+    font-size: 8px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   HELP
+   ========================================================= */
+
+.help {
+    margin-top: 11px;
+
+    padding: 8px 9px;
+
+    background: rgba(20, 22, 20, 0.45);
+
+    border: 1px solid #555854;
+
+    border-radius: 4px;
+
+    color: #cdd0c7;
+
+    font-size: 9px;
+
+    line-height: 1.55;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .calculator {
+        width: 96vw;
+
+        padding: 11px;
+    }
+
+    .buttons {
+        gap: 5px;
+    }
+
+    .buttons button {
+        min-height: 43px;
+
+        font-size: 13px;
+    }
+
+    .buttons button.function {
+        font-size: 12px;
+    }
+
+    .value {
+        font-size: 25px;
+    }
+
+    .memory-panel {
+        padding: 7px;
+    }
+}
